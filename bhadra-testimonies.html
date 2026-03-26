@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>बयानहरू — भाद्र २३/२४ जाँचबुझ आयोग</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Nepali:ital@0;1&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #0f0e0d;
+  --paper:    #f5f0e8;
+  --paper2:   #ede7d9;
+  --red:      #c0392b;
+  --red-dk:   #922b21;
+  --amber:    #d4860a;
+  --amber-lt: #f0c66a;
+  --green:    #1e6b3f;
+  --slate:    #2c3e50;
+  --muted:    #7f8c8d;
+  --white:    #ffffff;
+  --border:   rgba(15,14,13,.12);
+  --border-dk:rgba(255,255,255,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+.ne{font-family:'Tiro Devanagari Nepali',serif}
+.bb{font-family:'Bebas Neue',sans-serif}
+.caps{font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+
+/* ── PAGE HEADER ── */
+.pg-header{
+  background:var(--ink);
+  color:var(--paper);
+  padding:56px 48px 44px;
+  border-bottom:3px solid var(--red);
+  position:relative;
+  overflow:hidden;
+}
+.pg-header::before{
+  content:'बयान';
+  position:absolute;right:-10px;top:50%;
+  transform:translateY(-50%);
+  font-family:'Tiro Devanagari Nepali',serif;
+  font-size:11rem;
+  color:rgba(255,255,255,.025);
+  pointer-events:none;user-select:none;white-space:nowrap;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);text-decoration:none;margin-bottom:28px;
+  transition:color .2s;
+}
+.back-link:hover{color:var(--amber-lt)}
+.pg-eyebrow{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber-lt);margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.pg-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--amber-lt)}
+.pg-header h1{
+  font-family:'Tiro Devanagari Nepali',serif;
+  font-size:clamp(2rem,4.5vw,3.6rem);
+  line-height:1.1;margin-bottom:14px;
+}
+.pg-header p{font-size:13px;color:rgba(255,255,255,.48);max-width:520px;line-height:1.75}
+@media(max-width:768px){.pg-header{padding:40px 24px 36px}}
+
+/* ── FILTER & SEARCH BAR ── */
+.controls{
+  background:var(--paper2);
+  border-bottom:1px solid var(--border);
+  padding:0;
+  position:sticky;top:0;z-index:100;
+}
+.search-row{
+  padding:14px 48px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.search-input{
+  flex:1;max-width:400px;
+  padding:8px 14px;font-size:13px;
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);border:1px solid var(--border);
+  color:var(--ink);outline:none;
+  transition:border-color .2s;
+}
+.search-input:focus{border-color:var(--ink)}
+.search-input::placeholder{color:var(--muted)}
+.search-clear{
+  font-size:11px;color:var(--muted);cursor:pointer;
+  background:none;border:none;font-family:'DM Sans',sans-serif;
+  display:none;
+}
+.filter-row{
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  padding:0 48px;
+}
+.filter-row::-webkit-scrollbar{display:none}
+.filter-btn{
+  padding:12px 18px;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(0,0,0,.42);
+  cursor:pointer;white-space:nowrap;background:none;
+  border:none;border-bottom:3px solid transparent;
+  transition:all .2s;font-family:'DM Sans',sans-serif;
+  flex-shrink:0;
+}
+.filter-btn:hover{color:var(--ink)}
+.filter-btn.active{color:var(--red);border-bottom-color:var(--red);font-weight:500}
+@media(max-width:768px){
+  .search-row{padding:12px 24px}
+  .filter-row{padding:0 24px}
+}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  background:var(--paper2);border-right:1px solid var(--border);
+  padding:28px 0;
+  position:sticky;top:90px;
+  height:calc(100vh - 90px);
+  overflow-y:auto;scrollbar-width:thin;
+}
+.sb-section-title{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);padding:8px 22px 4px;
+}
+.sb-item{
+  display:block;padding:9px 22px;cursor:pointer;
+  text-decoration:none;border-left:3px solid transparent;
+  transition:background .15s;
+}
+.sb-item:hover{background:rgba(0,0,0,.04)}
+.sb-item.active{background:rgba(192,57,43,.06);border-left-color:var(--red)}
+.sb-name{font-family:'Tiro Devanagari Nepali',serif;font-size:.85rem;color:var(--ink);display:block;line-height:1.3}
+.sb-item.active .sb-name{color:var(--red)}
+.sb-role{font-size:10px;color:var(--muted);margin-top:1px;display:block}
+.sb-divider{height:1px;background:var(--border);margin:14px 22px}
+
+/* ── CONTENT ── */
+.content{padding:44px 48px;max-width:820px}
+@media(max-width:768px){.content{padding:32px 24px}}
+
+/* ── TESTIMONY CARD ── */
+.testimony{
+  margin-bottom:52px;
+  border-top:1px solid var(--border);
+  padding-top:36px;
+}
+.testimony:first-child{border-top:none;padding-top:0}
+
+/* CATEGORY-based data attribute — JS toggles display:none */
+.testimony[hidden]{display:none}
+
+.t-header{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:flex-start;margin-bottom:20px}
+.t-avatar{
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;
+  color:var(--paper);flex-shrink:0;letter-spacing:.04em;
+  background:var(--ink);
+}
+.t-avatar.ac{background:var(--red-dk)}
+.t-avatar.po{background:var(--slate)}
+.t-avatar.fa{background:var(--green)}
+.t-avatar.pl{background:#1a237e}
+
+.t-name{font-family:'Tiro Devanagari Nepali',serif;font-size:1.2rem;line-height:1.2;color:var(--ink);margin-bottom:3px}
+.t-role{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.t-tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{display:inline-block;padding:2px 8px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor}
+.tag-r{color:var(--red)} .tag-a{color:var(--amber)} .tag-g{color:var(--green)} .tag-s{color:var(--slate)} .tag-m{color:var(--muted);border-color:var(--border)}
+
+/* ── COMMISSION NOTE ── */
+.c-note{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px 18px;background:var(--ink);color:var(--paper);
+  margin-bottom:20px;
+}
+.c-note-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+.c-note-text{font-family:'Tiro Devanagari Nepali',serif;font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.8)}
+.c-note-text strong{color:var(--amber-lt)}
+
+/* ── KEY POINTS ── */
+.kp-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.kp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.kp{
+  display:flex;gap:11px;align-items:flex-start;
+  padding:11px 14px;background:var(--paper2);
+  border-left:3px solid var(--border);
+}
+.kp.crit{background:rgba(192,57,43,.05);border-left-color:var(--red)}
+.kp-icon{font-size:.95rem;flex-shrink:0;margin-top:1px}
+.kp-text{font-family:'Tiro Devanagari Nepali',serif;font-size:.9rem;line-height:1.6}
+.kp.crit .kp-text{color:var(--red-dk)}
+
+/* ── EXPAND BUTTON ── */
+.exp-btn{
+  width:100%;display:flex;align-items:center;gap:10px;
+  background:none;border:1px solid var(--border);padding:11px 18px;
+  cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  text-align:left;transition:all .2s;
+}
+.exp-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.exp-btn .ch{margin-left:auto;transition:transform .3s;font-size:.75rem}
+.exp-btn.open .ch{transform:rotate(180deg)}
+
+/* ── FULL STATEMENT ── */
+.full-stmt{
+  display:none;
+  border:1px solid var(--border);border-top:none;
+  background:var(--white);
+}
+.full-stmt.open{display:block}
+.full-inner{padding:24px 28px}
+.stmt-section{
+  margin-bottom:18px;padding-bottom:18px;
+  border-bottom:1px solid var(--border);
+}
+.stmt-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.stmt-q{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);margin-bottom:7px;
+  display:flex;align-items:center;gap:8px;
+}
+.stmt-q::before{
+  content:'প्र';display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;background:var(--red);color:white;
+  font-family:'Tiro Devanagari Nepali',serif;font-size:10px;flex-shrink:0;letter-spacing:0;
+}
+.stmt-a-lbl{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.stmt-a-lbl::before{
+  content:'उ';display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;background:var(--slate);color:white;
+  font-family:'Tiro Devanagari Nepali',serif;font-size:10px;flex-shrink:0;letter-spacing:0;
+}
+.stmt-text{font-family:'Tiro Devanagari Nepali',serif;font-size:.9rem;line-height:1.8;color:var(--ink)}
+.stmt-text strong{color:var(--red-dk)}
+.stmt-text em{color:var(--slate);font-style:italic}
+.stmt-note{
+  margin-top:10px;padding:9px 13px;
+  background:rgba(212,134,10,.07);border-left:3px solid var(--amber);
+  font-size:11px;color:var(--amber);font-style:italic;
+}
+.stmt-crit{
+  margin-top:10px;padding:9px 13px;
+  background:rgba(192,57,43,.05);border-left:3px solid var(--red);
+  font-size:11px;color:var(--red-dk);
+}
+
+/* ── FAMILY CARDS ── */
+.fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:14px}
+@media(max-width:580px){.fam-grid{grid-template-columns:1fr}}
+.fam-card{padding:18px;background:var(--paper2);border-top:3px solid transparent;transition:border-top-color .2s}
+.fam-card:hover{border-top-color:var(--red)}
+.fam-name{font-family:'Tiro Devanagari Nepali',serif;font-size:.95rem;color:var(--ink);margin-bottom:3px}
+.fam-rel{font-size:10px;color:var(--muted);margin-bottom:9px}
+.fam-quote{
+  font-family:'Tiro Devanagari Nepali',serif;font-size:.83rem;
+  line-height:1.65;color:var(--ink);
+  padding:9px 13px;background:var(--paper);
+  border-left:3px solid var(--red);
+  margin-top:9px;font-style:italic;
+}
+.fam-exp{
+  margin-top:10px;font-size:11px;color:var(--red);
+  cursor:pointer;background:none;border:none;
+  padding:0;font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;gap:4px;
+}
+.fam-full{display:none;margin-top:9px;padding-top:9px;border-top:1px solid var(--border)}
+.fam-full.open{display:block}
+.fam-full p{font-family:'Tiro Devanagari Nepali',serif;font-size:.83rem;line-height:1.7;color:var(--slate)}
+
+/* ── NO RESULTS ── */
+#no-results{display:none;padding:56px;text-align:center;color:var(--muted)}
+#no-results p{font-family:'Tiro Devanagari Nepali',serif;font-size:1rem;margin-top:8px}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.32);
+  padding:32px 48px;font-size:12px;line-height:1.75;
+  border-top:2px solid var(--red);
+}
+footer strong{color:rgba(255,255,255,.58)}
+footer a{color:var(--amber-lt);text-decoration:none}
+@media(max-width:768px){footer{padding:28px 24px}}
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE HEADER ══ -->
+<header class="pg-header">
+  <a href="index.html" class="back-link">← मुख्य पृष्ठमा फर्कनुहोस्</a>
+  <div class="pg-eyebrow">परिच्छेद ५ — बयान तथा घटना विवरण कागज</div>
+  <h1>बयानहरू र अन्तर्वार्ताहरू</h1>
+  <p>
+    जाँचबुझ आयोगले राजनीतिक नेतृत्व, सुरक्षा पदाधिकारी, प्रत्यक्षदर्शी र मृतकका परिवारसँग
+    लिएका बयानहरूको सारांश। सबै विषयवस्तु आधिकारिक आयोग प्रतिवेदन, २०८२ मा आधारित छ।
+  </p>
+  <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank"
+     style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:9px 18px;border:1px solid rgba(240,198,106,.35);color:var(--amber-lt);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 11h9M6.5 2v7M3.5 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    मूल प्रतिवेदन डाउनलोड — PDF (११ MB, ९०७ पृष्ठ)
+  </a>
+</header>
+
+<!-- SOURCE BANNER -->
+<div style="background:rgba(212,134,10,.08);border-bottom:1px solid rgba(212,134,10,.2);padding:9px 48px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+  <span style="font-family:'Tiro Devanagari Nepali',serif;font-size:.82rem;color:#2c3e50;flex:1;min-width:200px">
+    यस पृष्ठका सबै बयान र उद्धरणहरू आधिकारिक प्रतिवेदनको परिच्छेद ५ (पृष्ठ २९–३५७) बाट प्रत्यक्ष लिइएका हुन्।
+    पाठकहरूलाई मूल प्रतिवेदनसँग क्रस-चेक गर्न प्रोत्साहन गरिन्छ।
+  </span>
+  <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank"
+     style="display:inline-flex;align-items:center;gap:6px;color:#d4860a;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10h8M6 2v6M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    मूल PDF हेर्नुहोस्
+  </a>
+</div>
+
+<!-- ══ CONTROLS ══ -->
+<div class="controls">
+  <div class="search-row">
+    <input type="search" class="search-input" id="searchInput"
+      placeholder="नाम वा विषय खोज्नुहोस्... (ओली, प्रहरी, राजिनामा)"
+      oninput="applyFilters()">
+    <button class="search-clear" id="clearBtn" onclick="clearSearch()">× खाली गर्नुहोस्</button>
+  </div>
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" data-cat="all"     onclick="setFilter('all',this)">सबै</button>
+    <button class="filter-btn"        data-cat="accused" onclick="setFilter('accused',this)">अभियुक्त पदाधिकारी</button>
+    <button class="filter-btn"        data-cat="political" onclick="setFilter('political',this)">राजनीतिक</button>
+    <button class="filter-btn"        data-cat="security" onclick="setFilter('security',this)">सुरक्षा निकाय</button>
+    <button class="filter-btn"        data-cat="family"  onclick="setFilter('family',this)">मृतक परिवार</button>
+  </div>
+</div>
+
+<!-- ══ MAIN LAYOUT ══ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section-title">अभियुक्त पदाधिकारी</div>
+    <a class="sb-item" href="#oli"><span class="sb-name">KP शर्मा ओली</span><span class="sb-role">त्कालीन प्रधानमन्त्री</span></a>
+    <a class="sb-item" href="#lekhak"><span class="sb-name">रमेश लेखक</span><span class="sb-role">त्कालीन गृहमन्त्री</span></a>
+    <a class="sb-item" href="#khapung"><span class="sb-name">चन्द्रकुबेर खापुङ</span><span class="sb-role">त्कालीन IGP</span></a>
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">राजनीतिक नेताहरू</div>
+    <a class="sb-item" href="#deuba"><span class="sb-name">शेरबहादुर देउवा</span><span class="sb-role">पूर्व प्रधानमन्त्री</span></a>
+    <a class="sb-item" href="#prachanda"><span class="sb-name">पुष्पकमल दाहाल</span><span class="sb-role">पूर्व प्रधानमन्त्री</span></a>
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">सुरक्षा निकाय</div>
+    <a class="sb-item" href="#duwadi"><span class="sb-name">गोकर्णमणि दुवाडी</span><span class="sb-role">त्कालीन गृहसचिव</span></a>
+    <a class="sb-item" href="#aryal"><span class="sb-name">एकनारायण अर्याल</span><span class="sb-role">त्कालीन मुख्यसचिव</span></a>
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">मृतक परिवार</div>
+    <a class="sb-item" href="#families"><span class="sb-name">मृतकका परिवारहरू</span><span class="sb-role">४२+ परिवारका बयान</span></a>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ══ 1. KP OLI ══ -->
+    <div class="testimony" id="oli" data-cat="accused" data-search="ओली kp शर्मा प्रधानमन्त्री गोली राजिनामा">
+      <div class="t-header">
+        <div class="t-avatar ac">KPO</div>
+        <div>
+          <div class="t-name">KP शर्मा ओली</div>
+          <div class="t-role">त्कालीन प्रधानमन्त्री • कार्यकारी प्रमुख</div>
+          <div class="t-tags">
+            <span class="tag tag-r">अभियोजन सिफारिस</span>
+            <span class="tag tag-a">दफा १८१ + १८२</span>
+            <span class="tag tag-m">बयान पृष्ठ ५</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-note">
+        <div class="c-note-icon">⚠</div>
+        <div class="c-note-text">
+          आयोगको निष्कर्ष: ओलीले <strong>घटना सम्बन्धी आयोगका धेरै प्रश्नको जवाफ दिन अस्वीकार</strong> गरे।
+          "SEE का विद्यार्थी र फिल्डका प्रहरीलाई सोध्ने प्रश्न" भनी उपेक्षा गरे।
+        </div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp crit"><div class="kp-icon">🚫</div><div class="kp-text">"प्रधानमन्त्रीले प्रहरीलाई आदेश दिने होइन — यो गृह मन्त्रालयको काम हो। तर्कपूर्ण ढङ्गले प्रधानमन्त्री यो विषयमा जवाफदेही हुँदैन।"</div></div>
+        <div class="kp crit"><div class="kp-icon">🕐</div><div class="kp-text">भाद्र २३ गते दिउँसो १ बजेदेखि गोली चल्दा — <strong>राति १० बजे मात्र</strong> राष्ट्रिय सुरक्षा परिषद् बैठक बोलाए</div></div>
+        <div class="kp"><div class="kp-icon">📋</div><div class="kp-text">भाद्र २२ रातिको बैठकमा सुरक्षा निकायले "जेन-जेड शान्तिपूर्ण हुन्छ, ६-७ हजार मात्र आउँछन्" भनेको दाबी</div></div>
+        <div class="kp"><div class="kp-icon">🏠</div><div class="kp-text">आफ्नो सबै सम्पत्ति जलाइयो — "म बाधक भएको कारणले यो आन्दोलन भएको भए मेरो राजिनामापछि सब ठीक हुनुपर्ने तर भएन त?"</div></div>
+        <div class="kp"><div class="kp-icon">📱</div><div class="kp-text">सामाजिक सञ्जाल प्रतिबन्ध "न्यायोचित" थियो भन्ने बचाउ — "सामाजिक सञ्जाल नियमन त हुनुपर्‍यो नि! जवाफदेही हुनु पर्दैन?"</div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('oli-full',this)">
+        पूर्ण बयान पढ्नुहोस् — Read Full Statement <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="oli-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-q">प्रधानमन्त्रीको हैसियतले भाद्र २३ को घटनामा तपाईंको भूमिका के थियो?</div>
+            <div class="stmt-a-lbl">KP ओलीको जवाफ</div>
+            <div class="stmt-text">केन्द्रीय सुरक्षा समितिको अध्यक्ष गृहमन्त्री रहने हुँदा सुरक्षा संवेदनशीलता र त्यससँग सम्बन्धित सूचनाहरू गृहमन्त्रीसँग हुने हुँदा त्कालीन गृहमन्त्रीलाई जवाफको लागि आयोगमा जान भनेको हो।<br><br><strong>भाद्र २३ गते जेन-जेड पुस्ताद्वारा भएको आन्दोलनको दौरान भएका तत्काल र तुरुन्त हुने घटनाको सन्दर्भमा प्रधानमन्त्रीलाई सोझै जानकारी गराउने विषय होइन।</strong> प्रधानमन्त्रीले प्रहरीलाई आदेश दिने होइन, यसको लागि गृह मन्त्रालय विभागीय मन्त्रालयको रूपमा नै रहन्छ।</div>
+            <div class="stmt-crit">आयोगको टिप्पणी: यो तर्क स्वीकार्य छैन — देशको कार्यकारी प्रमुखको हैसियतले ४ घण्टाभन्दा बढी गोली चल्दा थप मानवीय क्षति रोक्न प्रयास नगर्नु "लापरबाही" हो भनी आयोगले ठहर गर्‍यो।</div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">गोली रोक्न तपाईंले किन आदेश दिनुभएन?</div>
+            <div class="stmt-a-lbl">KP ओलीको जवाफ</div>
+            <div class="stmt-text"><strong>भाद्र २३ गते को घटनामा प्रधानमन्त्रीले प्रहरीलाई गोली हान्न आदेश दिने अधिकार हुँदैन।</strong> यो भन्ने पनि होइन। यस्ता प्राविधिक प्रश्नहरू सम्बन्धित व्यक्तिहरूले जवाफ दिनुभएकै होला।<br><br>भाद्र २३ गते को घटनापछि बेलुकासम्म सरकारको बैठक बसी घटनाको निष्पक्ष छानबिन सम्बन्धमा न्यायिक आयोग गठन गर्ने, घाइतेको प्रभावकारी उपचार साथै मृतक परिवारलाई राहत दिने र जेन-जेड पुस्ताको माग बमोजिमको सामाजिक सञ्जालमा लगाएको प्रतिबन्ध खोल्ने निर्णय गरिएको हो।</div>
+            <div class="stmt-note">तथ्य: दिउँसो १ बजेदेखि नै सयौँ घाइते भइसकेका थिए। राष्ट्रिय सुरक्षा परिषद् बैठक राति १० बजे मात्र बसेको आयोगले पत्ता लगायो।</div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">राष्ट्रिय सुरक्षा परिषद् बैठक किन ढिलो बोलाइयो?</div>
+            <div class="stmt-a-lbl">KP ओलीको जवाफ</div>
+            <div class="stmt-text">भाद्र २२ गते रातिमै सुरक्षा निकायका प्रमुखसँग छलफल गरिएकोमा सुरक्षा निकायबाट <em>"६-७ हजार जति जेन-जेड आई शान्तिपूर्ण हुने"</em> भनेको थियो। सेना परिचालन गर्ने मनसाय सरकारको नभएकोले त्यस्तो गरिएन।</div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">आफ्नो राजिनामाले स्थिति सुधारिनन् भन्ने कुरामा के भन्नुहुन्छ?</div>
+            <div class="stmt-a-lbl">KP ओलीको जवाफ</div>
+            <div class="stmt-text">भाद्र २४ गते मैले राजिनामा दिएको हु। <strong>म बाधक भएको कारणले यो आन्दोलन भएको भए मेरो राजिनामापछि सब ठीक हुनुपर्ने तर भएन त?</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 2. HOME MINISTER ══ -->
+    <div class="testimony" id="lekhak" data-cat="accused" data-search="रमेश लेखक गृहमन्त्री राजिनामा अभियोजन गोली">
+      <div class="t-header">
+        <div class="t-avatar ac">RLK</div>
+        <div>
+          <div class="t-name">रमेश लेखक</div>
+          <div class="t-role">त्कालीन गृहमन्त्री • आन्तरिक सुरक्षाको सर्वोच्च जिम्मेवार</div>
+          <div class="t-tags">
+            <span class="tag tag-r">अभियोजन सिफारिस</span>
+            <span class="tag tag-a">दफा १८१ + १८२</span>
+            <span class="tag tag-g">राजिनामा दिए</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-note">
+        <div class="c-note-icon">📌</div>
+        <div class="c-note-text">लेखकले तुलनात्मक रूपमा बढी <strong>नैतिक जिम्मेवारी स्वीकार गरेर तत्काल राजिनामा</strong> दिए। तर आयोगले उनको "हेलचेक्र्याई" (Negligence) पूर्ण भूमिका फेला पार्‍यो।</div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp crit"><div class="kp-icon">🔫</div><div class="kp-text">"गोली प्रहार गर्न मैले कुनै आदेश दिइनँ — बल प्रयोग स्थलगत परिस्थितिको आधारमा खटिएका अधिकारीले निर्णय गर्ने विषय हो"</div></div>
+        <div class="kp"><div class="kp-icon">📞</div><div class="kp-text">गोली चलेर व्यक्ति हताहत भएको खबर पाएपछि तत्काल प्रधानमन्त्री, रक्षामन्त्री र सेनापतिलाई जानकारी दिएको</div></div>
+        <div class="kp"><div class="kp-icon">⚠️</div><div class="kp-text">घटनाअघि सुरक्षा निकायलाई — "हताहती नहोस्, नेतृत्वविहीन भीडको जोखिम छ" भनी निर्देशन दिएको दाबी</div></div>
+        <div class="kp crit"><div class="kp-icon">💔</div><div class="kp-text">भाद्र २३ को घटना "दुःखद र अकल्पनीय" — <strong>नैतिक जिम्मेवारी लिँदै तत्काल गृहमन्त्री पदबाट राजिनामा</strong></div></div>
+        <div class="kp"><div class="kp-icon">📊</div><div class="kp-text">"सूचना सङ्कलनको अभाव, युवापुस्तासँग राज्यको संवाद कमजोर हुनु र पूर्वतयारी पर्याप्त नहुनु" — आत्मालोचना</div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('lekhak-full',this)">
+        पूर्ण बयान पढ्नुहोस् — Read Full Statement <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="lekhak-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-q">गृहमन्त्रीको हैसियतले भाद्र २३ को दिन तपाईंले के-के गर्नुभयो?</div>
+            <div class="stmt-a-lbl">रमेश लेखकको जवाफ</div>
+            <div class="stmt-text">भाद्र २३ र २४ गते देशका विभिन्न भाग, विशेषतः काठमाडौँ उपत्यकामा देखिएको असहज सुरक्षागत अवस्थाबारे म, गृहमन्त्रीको हैसियतमा, समग्र शान्ति-सुरक्षा कायम गर्ने संवैधानिक र कानूनी दायित्वमा थिएँ।<br><br>मैले वास्तवमा वफल्डमा प्रत्यक्ष आदेश नदिने, तर <strong>नीतिगत निर्देशन, समन्वय र राजनीतिक तहबाट आवश्यक सहजीकरण गर्ने जिम्मेवारी निर्वाह गरेको</strong> स्पष्ट पार्छु।</div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">गोली चलाउन आदेश दिनुभएको थियो?</div>
+            <div class="stmt-a-lbl">रमेश लेखकको जवाफ</div>
+            <div class="stmt-text"><strong>अन्तिम बल प्रयोग अर्थात् गोली प्रहार गर्न भनी मैले कुनै आदेश दिएको थिइनँ।</strong> बल प्रयोग स्थलगत परिस्थितिको आधारमा खटिएका अधिकारीले निर्णय गर्ने विषय हो, र यस्ता विषयमा गृहमन्त्रीले प्रत्यक्ष आदेश दिने अभ्यास पनि छैन।<br><br>बानेश्वरतर्फ प्रदर्शन उग्र र हिंसात्मक हुँदै गएको जानकारी पाउनासाथ मैले सम्माननीय प्रधानमन्त्री, माननीय रक्षामन्त्री र नेपाली सेनाका प्रधान सेनापतिलाई जानकारी गराएँ।</div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">राजिनामा किन दिनुभयो?</div>
+            <div class="stmt-a-lbl">रमेश लेखकको जवाफ</div>
+            <div class="stmt-text">भाद्र २३ गतेको <strong>दुःखद र अकल्पनीय घटनाको कारण म अत्यन्त दुःखी र मर्माहत भई ठूलो पीडाबोधका कारण मैले त्काल नैतिक जिम्मेवारी लिँदै गृहमन्त्रीको पदबाट राजिनामा दिएँ।</strong></div>
+          </div>
+          <div class="stmt-section">
+            <div class="stmt-q">भविष्यमा यस्ता घटना नदोहोर्‍याउन के गर्नुपर्छ?</div>
+            <div class="stmt-a-lbl">रमेश लेखकको जवाफ</div>
+            <div class="stmt-text">राज्यको सुरक्षा प्रणालीमा देखिएका कमजोरी, सूचना सङ्कलन र विश्लेषणको अभाव, युवापुस्तासँग राज्यको संवाद कमजोर हुनु र पूर्वतयारी पर्याप्त नहुनु — यी पक्षहरू <strong>आत्मालोचनासहित स्वीकार गरेको छु।</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 3. KHAPUNG (IGP) ══ -->
+    <div class="testimony" id="khapung" data-cat="accused" data-search="चन्द्रकुबेर खापुङ IGP प्रहरी महानिरीक्षक गोली">
+      <div class="t-header">
+        <div class="t-avatar ac">CCK</div>
+        <div>
+          <div class="t-name">चन्द्रकुबेर खापुङ</div>
+          <div class="t-role">त्कालीन प्रहरी महानिरीक्षक (IGP)</div>
+          <div class="t-tags">
+            <span class="tag tag-r">अभियोजन सिफारिस</span>
+            <span class="tag tag-a">दफा १८१ + १८२</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-note">
+        <div class="c-note-icon">⚠</div>
+        <div class="c-note-text">आयोगको निष्कर्ष: खापुङले <strong>करिब ४ घण्टासम्म गोली चल्दा कुनै सुधारात्मक आदेश (Corrective Order) दिएनन्।</strong> बल प्रयोगको आनुपातिकता र आवश्यकताको सिद्धान्त पालना गरेनन्।</div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp crit"><div class="kp-icon">🔕</div><div class="kp-text">भाद्र २३ गते गोली चल्दा करिब <strong>४ घण्टासम्म</strong> "Corrective Order" (सुधारात्मक आदेश) दिएनन्</div></div>
+        <div class="kp crit"><div class="kp-icon">🏛️</div><div class="kp-text">भाद्र २४ गते महाराजगञ्जमा प्रहरी निर्ममतापूर्वक मारिँदा <strong>सैन्य मुख्यालयमा बसेर</strong> आदेश दिइरहेका थिए</div></div>
+        <div class="kp"><div class="kp-icon">📡</div><div class="kp-text">भाद्र २४ का लागि Victor Control मार्फत "थुनुवा छाड्ने, हतियार जोगाउने, अश्रुग्यास बाहेक बल नप्रयोग गर्ने" आदेश दिए</div></div>
+        <div class="kp"><div class="kp-icon">🔫</div><div class="kp-text">प्रहरी कार्यालयहरूबाट हतियार लुटिन गएकोमा उनको जिम्मेवारी प्रश्नास्पद — हतियारको लेखाजोखा नदिएको</div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('khapung-full',this)">
+        आयोगको विश्लेषण पढ्नुहोस् <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="khapung-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-a-lbl">आयोगको विश्लेषण — परिच्छेद १२ र १३</div>
+            <div class="stmt-text">भाद्र २३ गते संसद भवन परिसरमा गोली चलेर प्रदर्शनकारीहरूको मृत्यु हुन थालेपछि पनि झण्डै चार घण्टासम्म गोली नरोकेर <strong>"हेलचेक्र्याई" (Negligence) पूर्ण कृयाकलाप</strong> गरेको देखिन आयो।<br><br>बानेश्वर संसद परिसरमा भाद्र २३ गते प्रदर्शनकारीले भाद्र २४ गतेमा जस्तो प्रहरीमाथि आक्रमण गरेको, हतियार खोसेको र संसद भवनमा आगो नै लगाएको अवस्था थिएन। संसद भवन परिसर बाहिर सार्वजनिक स्थानहरूमा रहेका प्रदर्शनकारीले इटा ढुङ्गा प्रहार गरेका र संसद भवनको दक्षिण ढोकासँगैको कोठामा आगो लगाएका थिए। <strong>त्यस्तो अवस्थामा सुरक्षाका अन्य प्रक्रियाहरू अपनाएर जानु पर्ने थियो।</strong></div>
+            <div class="stmt-crit">आयोगको ठहर: मुलुकी अपराध संहिता, २०७४ को दफा १८१ (लापरबाही) र दफा १८२ (हेलचेक्र्याई) अनुसार अनुसन्धान तहकिकात र अभियोजन गर्न नेपाल सरकारलाई सिफारिस।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 4. DEUBA ══ -->
+    <div class="testimony" id="deuba" data-cat="political" data-search="शेरबहादुर देउवा काँग्रेस पूर्व प्रधानमन्त्री">
+      <div class="t-header">
+        <div class="t-avatar pl">SBD</div>
+        <div>
+          <div class="t-name">शेरबहादुर देउवा</div>
+          <div class="t-role">पूर्व प्रधानमन्त्री • नेपाली काँग्रेस सभापति</div>
+          <div class="t-tags">
+            <span class="tag tag-s">राजनीतिक नेता</span>
+            <span class="tag tag-m">बयान पृष्ठ ४</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp"><div class="kp-icon">🏠</div><div class="kp-text">भाद्र २३ को दिन बुढानीलकण्ठको आफ्नो निजी निवासमा थिए — साँझ बालुवाटारमा पुगी सामाजिक सञ्जाल प्रतिबन्ध हटाउन ओलीलाई आग्रह गरे, उनले मानेनन्</div></div>
+        <div class="kp crit"><div class="kp-icon">💰</div><div class="kp-text">घरमा ठूलो रकम भेटिएको दाबी — <strong>"यो निरपराध षड्यन्त्र हो, AI generated विवरण हो"</strong> भनी अस्वीकार</div></div>
+        <div class="kp"><div class="kp-icon">🤝</div><div class="kp-text">भाद्र २४ को बिहान प्रदर्शनकारीहरू घरमा आए, सुरक्षाकर्मीसँग हातपात हुँदा — <strong>केही जेन-जेड युवाहरूले उनलाई बचाए</strong></div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('deuba-full',this)">
+        पूर्ण बयान पढ्नुहोस् <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="deuba-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-a-lbl">शेरबहादुर देउवाको बयान</div>
+            <div class="stmt-text">२०८२ भाद्र २३ गतेको दिन म बुढानीलकण्ठ वडा नं. २ बासुकी मार्ग स्थित मेरो निजी निवासमा थिएँ र सो दिन बेलुका बालुवाटारमा पनि उपस्थित भई मैले सामाजिक सञ्जालमाथिको प्रतिबन्ध हटाउन आग्रह गरेँ र त्कालीन प्रधानमन्त्रीले हटाउनुभएको थियो तर म कुनै औपचारिक बैठकमा सहभागी थिइनँ।<br><br><strong>भाद्र २४ गते बिहान १० बजे प्रदर्शनकारीहरू मेरो निजी निवासमा भेला भई नाराबाजी गर्दा सुरक्षाकर्मीले रोक्दारोक्दै हामीमाथि हातपात भयो र केही जेन-जेडका युवाहरूले बचाए।</strong> हामी राति २२:०० बजेतिर सुरक्षित स्थान पुग्यौँ।<br><br>नेपाल प्रहरीले वडा अध्यक्षको रोहबरमा गरेको मुचुल्कामा मेरो निवासमा भेटिएको रकमबारे उल्लेख छ, ठूलो परिमाण थिएन। <em>सामाजिक सञ्जालको विवरण AI generated हुनुपर्छ। यो नितान्त षड्यन्त्र हो</em> तर कसले गर्‍यो थाहा भएन।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 5. PRACHANDA ══ -->
+    <div class="testimony" id="prachanda" data-cat="political" data-search="पुष्पकमल दाहाल प्रचण्ड माओवादी पूर्व प्रधानमन्त्री">
+      <div class="t-header">
+        <div class="t-avatar pl">PKD</div>
+        <div>
+          <div class="t-name">पुष्पकमल दाहाल "प्रचण्ड"</div>
+          <div class="t-role">पूर्व प्रधानमन्त्री • नेकपा माओवादी केन्द्र</div>
+          <div class="t-tags">
+            <span class="tag tag-s">राजनीतिक नेता</span>
+            <span class="tag tag-m">बयान पृष्ठ ५</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp"><div class="kp-icon">🕊️</div><div class="kp-text">भाद्र २३ गते — सहादत प्राप्त प्रदर्शनकारीलाई सहिद घोषणा गर्न तथा अवस्था साम्य बनाउन सार्वजनिक अपील गरेको; भोलिपल्ट सर्वदलीय बैठक आह्वान</div></div>
+        <div class="kp crit"><div class="kp-icon">🔍</div><div class="kp-text">भाद्र २४ को घटनालाई <strong>"आन्तरिक तथा बाह्य घुसपैठको सम्भावना"</strong> देखिन्छ — "गलत तत्त्वहरूले युवाहरूको भावनालाई प्रयोग गरेको"</div></div>
+        <div class="kp"><div class="kp-icon">🏠</div><div class="kp-text">काठमाडौँस्थित भाडाको निवास र चितवन घरमा तोडफोड, आगजनी — "अवैध नगद भेटिएको भन्ने प्रचार निराधार हो"</div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('prachanda-full',this)">
+        पूर्ण बयान पढ्नुहोस् <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="prachanda-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-a-lbl">पुष्पकमल दाहाल "प्रचण्ड"को बयान</div>
+            <div class="stmt-text">भाद्र २३ गतेका दिन भएको दमनको भत्सर्ना गर्दै सहादत प्राप्त प्रदर्शनकारीलाई सहिद घोषणा गर्न तथा अवस्था साम्य बनाउन सार्वजनिक अपील गरेको थिएँ।<br><br>मेरो बुझाइमा उक्त आन्दोलनको पृष्ठभूमि सरकारको कार्यशैलीप्रति बढ्दो जनअसन्तुष्टि र आक्रोश हो। सामाजिक सञ्जालमा लगाइएको प्रतिबन्ध त्यसको तात्कालिक कारण बनेको देखिन्छ।<br><br><em>भाद्र २४ का घटनामा आन्तरिक तथा बाह्य घुसपैठको सम्भावना देखिन्छ।</em> <strong>भाद्र २४ का घटनालाई युवाको मागभन्दा पृथक ढङ्गले हेर्नुपर्छ र आपराधिक कार्यमा संलग्न जो-कोहीलाई कानूनबमोजिम कारबाही हुनुपर्छ।</strong><br><br>काठमाडौँमा मेरो आफ्नै घर छैन। मेरो सुपुत्री गङ्गा दाहालको घरमा अवैध नगद भेटिएको भन्ने प्रचार निराधार हो।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 6. HOME SECRETARY ══ -->
+    <div class="testimony" id="duwadi" data-cat="security" data-search="गोकर्णमणि दुवाडी गृहसचिव हेलचेक्र्याई कारबाही">
+      <div class="t-header">
+        <div class="t-avatar po">GKD</div>
+        <div>
+          <div class="t-name">गोकर्णमणि दुवाडी</div>
+          <div class="t-role">त्कालीन गृहसचिव</div>
+          <div class="t-tags">
+            <span class="tag tag-r">कारबाही सिफारिस</span>
+            <span class="tag tag-a">दफा १८२ — हेलचेक्र्याई</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-note">
+        <div class="c-note-icon">⚠</div>
+        <div class="c-note-text">आयोगको निष्कर्ष: दुवाडीले <strong>हेलचेक्र्याईपूर्ण आदेश र कार्य</strong> गरे। गोली चल्दा रोक्न लगाउन सक्ने शासकीय अधिकारको उचित प्रयोगप्रति उदासीन रहे।</div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp"><div class="kp-icon">📋</div><div class="kp-text">भाद्र २२ साँझ गृह मन्त्रालयमा केन्द्रीय सुरक्षा समितिको बैठक बसेको — सुरक्षा निकायबाट ठूलो हिंसाको ठोस गुप्तचर सूचना नआएको</div></div>
+        <div class="kp crit"><div class="kp-icon">🔗</div><div class="kp-text">समन्वयको अभाव — गृह मन्त्रालय, प्रहरी र सशस्त्र प्रहरी बीच प्रभावकारी संयन्त्र नबनेको</div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('duwadi-full',this)">
+        बयान पढ्नुहोस् <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="duwadi-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-a-lbl">गोकर्णमणि दुवाडीको बयान</div>
+            <div class="stmt-text">घटनापूर्व भाद्र २२ गते साँझ गृह मन्त्रालय सिंहदरबारमा केन्द्रीय सुरक्षा समितिको बैठक बसेको थियो। उक्त बैठकमा सुरक्षा निकायका प्रमुखहरू र प्रमुख जिल्ला अधिकारीबाट युवा पुस्ताले प्रदर्शन गर्ने जानकारी प्राप्त भएको र स्थानीय सुरक्षा व्यवस्था मिलाउने निर्णय भएको थियो।<br><br>भाद्र २२ गतेको बैठकमा सशस्त्र हिंसा, आगजनी वा ठूलो स्तरको तोडफोड हुने ठोस गुप्तचर सूचना प्रस्तुत भएन। <em>व्यक्तिगत रूपमा सामाजिक सञ्जालमा गतिविधि बढेको सुने पनि यति ठूलो हिंसात्मक अवस्था आउँछ भन्ने स्पष्ट आकलन सुरक्षा निकायबाट प्राप्त भएन।</em><br><br><strong>सुरक्षा निकायबीच देखिएको समन्वयको अभावका लागि कुनै एक संस्थालाई मात्र दोष दिन मिल्दैन।</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 7. CHIEF SECRETARY ══ -->
+    <div class="testimony" id="aryal" data-cat="security" data-search="एकनारायण अर्याल मुख्यसचिव सुरक्षा बैठक">
+      <div class="t-header">
+        <div class="t-avatar po">ENA</div>
+        <div>
+          <div class="t-name">एकनारायण अर्याल</div>
+          <div class="t-role">त्कालीन मुख्यसचिव</div>
+          <div class="t-tags">
+            <span class="tag tag-s">प्रशासनिक</span>
+            <span class="tag tag-m">बयान पृष्ठ ३</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kp-label">मुख्य बुँदाहरू</div>
+      <div class="kp-list">
+        <div class="kp"><div class="kp-icon">🏛️</div><div class="kp-text">भाद्र २२ को बैठकमा — "ठूलो हिंसा हुन्छ भन्ने ठोस गुप्तचर सूचना आएन" — माइतीघरदेखि बानेश्वरसम्म जुलुस जाने अनुमान भए पनि यति ठूलो क्षति निम्त्याउँछ भन्ने मूल्याङ्कन आएको थिएन</div></div>
+        <div class="kp crit"><div class="kp-icon">🚁</div><div class="kp-text">भाद्र २४ को बिहान — ओलीको राजिनामाअघि नै सुरक्षा निकायका सबै प्रमुखहरू बालुवाटारमा भेटेर वस्तुस्थितिबारे जानकारी गराएका थिए — <strong>स्थिति नियन्त्र बाहिर जाँदै गरेको प्रतिवेदन आयो</strong></div></div>
+        <div class="kp"><div class="kp-icon">🔐</div><div class="kp-text">"रवि लामिछानेलाई नख्खु कारागारबाट पर दिई सुरक्षित निकाल्न मेरो भूमिका" भन्ने सामाजिक सञ्जालको दाबी — <strong>"यो मलाई व्यक्तिगत रूपमा बदनाम गर्ने षड्यन्त्र"</strong></div></div>
+      </div>
+
+      <button class="exp-btn" onclick="toggleStmt('aryal-full',this)">
+        पूर्ण बयान पढ्नुहोस् <span class="ch">▼</span>
+      </button>
+      <div class="full-stmt" id="aryal-full">
+        <div class="full-inner">
+          <div class="stmt-section">
+            <div class="stmt-a-lbl">एकनारायण अर्यालको बयान</div>
+            <div class="stmt-text">२०८२ भाद्र २२ गतेको अनौपचारिक बैठकमा भोलिपल्ट जेन-जेड पुस्ताले आह्वान गरेको प्रदर्शनको सुरक्षात्मक विश्लेषण गर्दै जनधनको क्षति नहोस् भनी समन्वयात्मक ढङ्गले सुरक्षा व्यवस्था मिलाउने योजना बनाइएको थियो।<br><br>बैठकमा Discord, Reddit लगायत सामाजिक सञ्जालबाट व्यापक हिंसा, आगजनी वा ठूलो स्तरको तोडफोड हुने ठोस गुप्तचर सूचना प्रस्तुत भएन। <em>माइतीघरदेखि बानेश्वरसम्म जुलुस जाने अनुमान भए पनि त्यसले यति ठूलो क्षति निम्त्याउँछ भन्ने मूल्याङ्कन आएको थिएन।</em><br><br><strong>भाद्र २४ गते बिहान करिब १० बजे प्रधानमन्त्रीले राजिनामा दिनुअघि गृहसचिव, प्रधान सेनापति लगायत सबै सुरक्षा निकायका प्रमुखहरूले बालुवाटारमा भेटेर वस्तुस्थितिबारे जानकारी गराएका थिए।</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 8. BEREAVED FAMILIES ══ -->
+    <div class="testimony" id="families" data-cat="family" data-search="मृतक परिवार परिवारहरू गोली मृत्यु राहत न्याय">
+      <div class="t-header">
+        <div class="t-avatar fa">MR</div>
+        <div>
+          <div class="t-name ne">मृतकका परिवारहरूका बयान</div>
+          <div class="t-role">४२+ परिवार • परिच्छेद ५.६</div>
+          <div class="t-tags">
+            <span class="tag tag-g">मृतक परिवार</span>
+            <span class="tag tag-r">४२ गोलीबाट मृत्यु</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-note">
+        <div class="c-note-icon">💔</div>
+        <div class="c-note-text">प्रायः सबै परिवारको एउटै माग: <strong>त्कालीन प्रधानमन्त्री, गृहमन्त्री, IGP र फिल्ड कमाण्डरहरूलाई न्यायिक कारबाही।</strong> प्रायः सबैले "बिना चेतावनी, टाउको वा छातीमा गोली" भनेका छन्।</div>
+      </div>
+
+      <div class="kp-label">सबै बयानमा देखिने साझा ढाँचा</div>
+      <div class="kp-list">
+        <div class="kp crit"><div class="kp-icon">🎯</div><div class="kp-text">"सुरक्षाकर्मीले <strong>आक्रमक र दमनकारी रूपमा बिना चेतावनी नै टाउको वा छातीमा गोली प्रहार</strong> गरेका रहेछन्"</div></div>
+        <div class="kp"><div class="kp-icon">💰</div><div class="kp-text">राज्यबाट <strong>रु. १५ लाख</strong> राहत पाएका छन् — तर "सरकारले अहिलेसम्म हामी पीडितका लागि केही गर्न सकेजस्तो लाग्दैन"</div></div>
+        <div class="kp"><div class="kp-icon">👨‍👧</div><div class="kp-text">मृतकहरू: विद्यार्थी, मजदूर, चित्रकार, पेन्टर — अधिकांश <strong>स्वतःस्फूर्त रूपमा</strong> आन्दोलनमा सहभागी</div></div>
+        <div class="kp"><div class="kp-icon">⚖️</div><div class="kp-text">"देशमा सुशासन, भ्रष्टाचारमुक्त समाज र रोजगारीको उपलब्धता हुनुपर्छ — त्यही माग लिएर गएकोमा मृत्यु भयो"</div></div>
+      </div>
+
+      <div class="fam-grid">
+
+        <div class="fam-card">
+          <div class="fam-name ne">विनोद महजान (३४ वर्ष, चित्रकार)</div>
+          <div class="fam-rel">दाजु काजी रत्न महजानको बयान</div>
+          <div class="fam-quote ne">"प्रत्यक्षदर्शीले बताएअनुसार सुरक्षाकर्मीले दमनकारी रूपमा बिना चेतावनी नै मुखमा २ वटा गोली प्रहार गरेका रहेछन् — गोली टाउकोको पछाडिबाट बाहिर निस्केको।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam1',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam1"><p class="ne">भाद्र २३, दिउँसो १२ बजे शंखमुलमा पानी वितरण गर्दैगरेको देखेका थिए। अस्पतालमा १:५८ बजेमै मृत घोषणा। जाँचबुझ आयोगले दोषीलाई न्यायिक कारबाही गर्नुपर्छ। राहत स्वरूप नेपाल सरकारबाट रु.१५ लाख र ललितपुर महानगरपालिकाबाट रु.५ लाख पाएका छौँ।</p></div>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-name ne">विमल बाबु भट्ट (कक्षा १२ का विद्यार्थी)</div>
+          <div class="fam-rel">दाजु अनिल भट्टको बयान</div>
+          <div class="fam-quote ne">"सुरक्षाकर्मीले आक्रमक र दमनकारी रूपमा बिना चेतावनी नै छातीमा गोली प्रहार गरे। सरकारले अहिलेसम्म हामी पीडितका लागि केही गर्न सकेजस्तो लाग्दैन।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam2',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam2"><p class="ne">भाद्र २३ गते बानेश्वरस्थित आन्दोलनमा सहभागी। बानेश्वर चोकमा गोली लागेर दिउँसो १२:४५ बजे मृत घोषणा। घटनाको जिम्मेवार त्कालीन नीतिस्तरका सबै, त्कालीन प्रधानमन्त्री, गृहमन्त्री, CDO, IGP, प्रहरी अतिरिक्त महानिरीक्षक, प्रहरी नायब महानिरीक्षक, फिल्ड कमाण्डर लगायतका सुरक्षा संयन्त्रका व्यक्तिहरू हुन्।</p></div>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-name ne">प्रविण कुलुङ</div>
+          <div class="fam-rel">भाइ मौसम कुलुङको बयान</div>
+          <div class="fam-quote ne">"दाइको छातीको दाहिने भागमा गोली छिरेर ढाडबाट वारपार भएको। सडकमा ढलेका दाइलाई काखमा राखेर रगत बग्दैगरेको देखेँ।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam3',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam3"><p class="ne">भाद्र २४ गते, गौशाला चोकमा। फोनमा कुरा गर्दै अगाडि बढेका थिए — एक्कासी प्रहरीले चौकी भित्रैबाट गोली चलाएर ढाले। मेरो दाजुलाई मृत्युको अवस्थामा पुर्‍याउने कार्यमा संलग्न रहेका त्कालीन प्रधानमन्त्री, गृहमन्त्री र गोली फायर गर्ने प्रहरीसहितलाई कारबाही होस्। राज्यबाट पाइने क्षतिपूर्ति रकम रु.१५ लाख पाइसकेका छौँ।</p></div>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-name ne">निरज श्रेष्ठ (स्नातक, विदेश तयारी)</div>
+          <div class="fam-rel">बुवा नारायण श्रेष्ठको बयान</div>
+          <div class="fam-quote ne">"विदेश जाने तयारीमा थियो। घरबाट निस्किने बेलामा 'देशको हितको लागि जाँदैछु' भन्यो। त्यसपछि फिर्ता भएन।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam4',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam4"><p class="ne">सोही दिन गोली लागेपछि आन्दोलनकारीले नै अस्पताल पुर्‍याएको रहेछन्। भाद्र २४ गते तार्केश्वर अस्पतालले नै मृत घोषित गरेको थियो। सुरक्षाकर्मीले दमनकारी रूपमा बिना चेतावनी नै गोली प्रहार गरेका हुन्। घटनाको जिम्मेवार त्कालीन माथिल्लो पदमा बस्ने सबै हुन्।</p></div>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-name ne">ईश्वतबहादुर अधिकारी (डबल मास्टर्स)</div>
+          <div class="fam-rel">बुवा ईश्वर बहादुर अधिकारीको बयान</div>
+          <div class="fam-quote ne">"भाद्र २३ गते दिउँसो २:१२ बजे फोनमा अन्तिम कुरा भयो — 'उसको अगाडि ६, ७ जनाको लास छ, निग्दी निस्केको छ' भनेको थियो।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam5',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam5"><p class="ne">मैले ईश्वतलाई सजग गराएको थिएँ। सोही दिन बानेश्वर चोकमा गोली लागेपछि अर्कै मान्छेले फोन उठाएर "निटो वीर अस्पतालको इमर्जेन्सी सेन्टरमा आउनुपर्‍यो" भनेका थिए। सुरक्षाकर्मीले आक्रमक र दमनकारी रूपमा बिना चेतावनी नै छातीमा गोली प्रहार गरेका रहेछन्। राहत स्वरूप नेपाल सरकारबाट रु.१५ लाख पाएका छौँ।</p></div>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-name ne">सन्तोष विश्वकर्मा (मजदूर)</div>
+          <div class="fam-rel">श्रीमती अम्बिका वि.क.को बयान</div>
+          <div class="fam-quote ne">"घटनाको जिम्मेवार त्कालीन नीतिस्तरका सबै, त्कालीन प्रधानमन्त्री, गृहमन्त्री, CDO, IGP, सुरक्षाकर्मी र तिनका कमाण्डर लगायत हुन्।"</div>
+          <button class="fam-exp" onclick="toggleFam('fam6',this)">+ विस्तारमा पढ्नुहोस्</button>
+          <div class="fam-full" id="fam6"><p class="ne">भाद्र २३ गते बिहान १०:३० बजे अन्तिम फोन भयो। भाद्र २३ मा नै अस्पतालमा उपचार हुन नपाउँदै मृत्यु। राहत स्वरूप नेपाल सरकारबाट रु.१५ लाख पाएका छौँ। यस्ता घटना नदोहोरिन दोषीलाई कडाभन्दा कडा कारबाही हुनुपर्छ। देशमा सुशासन कायम गरी भ्रष्टाचारको निवारण र रोजगारीको उपलब्धता हुनुपर्छ।</p></div>
+        </div>
+
+      </div>
+
+      <p class="ne" style="margin-top:16px;padding:14px 18px;background:var(--paper2);border-left:3px solid var(--border);font-size:.85rem;color:var(--muted);line-height:1.7">
+        प्रतिवेदनमा <strong style="color:var(--ink)">४२+ मृतकका परिवार</strong> र <strong style="color:var(--ink)">घाइतेहरू</strong> को बयान समावेश छ। सबैको माग एउटै: न्यायिक कारबाही।
+      </p>
+    </div>
+
+    <!-- No results -->
+    <div id="no-results">
+      <div style="font-size:2rem">🔍</div>
+      <p class="ne">कुनै बयान फेला परेन। अर्को शब्द प्रयास गर्नुहोस्।</p>
+    </div>
+
+  </div><!-- end content -->
+</div><!-- end layout -->
+
+<footer>
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div>
+      <strong>स्रोत:</strong> भाद्र २३/२४ जाँचबुझ आयोग प्रतिवेदन, नेपाल सरकार, २०८२<br>
+      परिच्छेद ५ — बयान तथा घटना विवरण कागज (पृष्ठ २९–३५७)<br><br>
+      <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;color:var(--amber-lt);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(240,198,106,.3);padding:5px 11px">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5h8M5.5 1.5v6M2.5 5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        पूर्ण प्रतिवेदन PDF (११ MB)
+      </a>
+    </div>
+    <div><a href="index.html">← मुख्य इन्फोग्राफिकमा फर्कनुहोस्</a></div>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════
+   FILTER STATE
+══════════════════════════════════ */
+var activeCategory = 'all';
+var activeSearch   = '';
+
+/* ── Set category filter ── */
+function setFilter(cat, btn) {
+  activeCategory = cat;
+  /* update button styles */
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  applyFilters();
+}
+
+/* ── Text search ── */
+document.getElementById('searchInput').addEventListener('input', function() {
+  activeSearch = this.value.toLowerCase().trim();
+  document.getElementById('clearBtn').style.display = activeSearch ? 'inline-block' : 'none';
+  applyFilters();
+});
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  activeSearch = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  applyFilters();
+}
+
+/* ── Apply both filters ── */
+function applyFilters() {
+  var testimonies = document.querySelectorAll('.testimony');
+  var visible = 0;
+
+  testimonies.forEach(function(t) {
+    var catOk = (activeCategory === 'all') || (t.dataset.cat === activeCategory);
+    var searchTxt = (t.dataset.search || '') + ' ' + (t.innerText || '').toLowerCase();
+    var searchOk  = !activeSearch || searchTxt.includes(activeSearch);
+
+    if (catOk && searchOk) {
+      t.removeAttribute('hidden');
+      visible++;
+    } else {
+      t.setAttribute('hidden', '');
+    }
+  });
+
+  document.getElementById('no-results').style.display = (visible === 0) ? 'block' : 'none';
+}
+
+/* ── Toggle full statement ── */
+function toggleStmt(id, btn) {
+  var el  = document.getElementById(id);
+  var now = el.classList.contains('open');
+  el.classList.toggle('open', !now);
+  btn.classList.toggle('open', !now);
+  var ch = btn.querySelector('.ch');
+  if (ch) ch.textContent = now ? '▼' : '▲';
+}
+
+/* ── Toggle family card ── */
+function toggleFam(id, btn) {
+  var el  = document.getElementById(id);
+  var now = el.classList.contains('open');
+  el.classList.toggle('open', !now);
+  btn.textContent = now ? '+ विस्तारमा पढ्नुहोस्' : '− बन्द गर्नुहोस्';
+}
+
+/* ── Sidebar scroll-spy ── */
+var sbItems = document.querySelectorAll('.sb-item[href^="#"]');
+
+window.addEventListener('scroll', function() {
+  var y = window.scrollY + 140;
+  var active = null;
+  sbItems.forEach(function(item) {
+    var id  = item.getAttribute('href').slice(1);
+    var sec = document.getElementById(id);
+    if (sec && sec.offsetTop <= y) active = item;
+  });
+  sbItems.forEach(function(i) { i.classList.remove('active'); });
+  if (active) active.classList.add('active');
+}, { passive: true });
+
+/* ── Smooth scroll ── */
+sbItems.forEach(function(item) {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    var id  = item.getAttribute('href').slice(1);
+    var sec = document.getElementById(id);
+    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

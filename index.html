@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>भाद्र २३/२४ — जाँचबुझ आयोग प्रतिवेदन</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Nepali:ital@0;1&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
+:root {
+  --ink:        #0f0e0d;
+  --paper:      #f5f0e8;
+  --paper2:     #ede7d9;
+  --red:        #c0392b;
+  --red-dark:   #922b21;
+  --amber:      #d4860a;
+  --amber-lt:   #f0c66a;
+  --slate:      #2c3e50;
+  --muted:      #7f8c8d;
+  --white:      #ffffff;
+  --border:     rgba(15,14,13,0.12);
+  --border-dk:  rgba(255,255,255,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+/* ── TYPE ── */
+.ne { font-family: 'Tiro Devanagari Nepali', serif; }
+.bb { font-family: 'Bebas Neue', sans-serif; }
+/* ── UTILS ── */
+.muted  { color: var(--muted); }
+.red    { color: var(--red); }
+.amber  { color: var(--amber); }
+.caps   { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+/* ── GRID RULE ── */
+.section      { padding: 72px 48px; border-bottom: 1px solid var(--border); }
+.section-dark { background: var(--ink); color: var(--paper); }
+.section-alt  { background: var(--paper2); }
+@media(max-width:768px){ .section{ padding:56px 24px; } }
+
+/* ════════════════════════
+   HERO
+════════════════════════ */
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.025) 39px,rgba(255,255,255,.025) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.025) 39px,rgba(255,255,255,.025) 40px);
+  pointer-events: none;
+}
+.hero-watermark {
+  position: absolute;
+  right: -10px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem,14vw,13rem);
+  letter-spacing: -.02em;
+  color: rgba(255,255,255,.025);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.hero-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--border-dk);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  position: relative;
+  z-index: 2;
+}
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 48px;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--amber-lt);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--amber-lt);
+}
+.hero-title {
+  font-family: 'Tiro Devanagari Nepali', serif;
+  font-size: clamp(2.6rem,5.5vw,5rem);
+  line-height: 1.08;
+  margin-bottom: 14px;
+}
+.hero-title em { color: var(--amber-lt); font-style: italic; }
+.hero-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.1rem,2.5vw,2rem);
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.28);
+  margin-bottom: 36px;
+}
+.hero-desc {
+  max-width: 560px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 44px;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-dk);
+  max-width: 700px;
+}
+.hero-stat {
+  flex: 1;
+  min-width: 130px;
+  padding: 18px 22px;
+  border-right: 1px solid var(--border-dk);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-n  { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--amber-lt); display: block; }
+.hero-stat-l  { font-family: 'Tiro Devanagari Nepali', serif; font-size: 12px; color: rgba(255,255,255,.38); margin-top: 3px; display: block; }
+.hero-bottom  {
+  padding: 20px 48px;
+  border-top: 1px solid var(--border-dk);
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.28);
+}
+.scroll-cue svg { animation: bob 2.2s ease-in-out infinite; }
+@keyframes bob {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(5px)}
+}
+/* animations */
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-eyebrow  { animation: fadeUp .55s .15s both; }
+.hero-title    { animation: fadeUp .55s .28s both; }
+.hero-sub      { animation: fadeUp .55s .4s both; }
+.hero-desc     { animation: fadeUp .55s .52s both; }
+.hero-stats    { animation: fadeUp .55s .66s both; }
+
+/* ════════════════════════
+   STICKY NAV
+════════════════════════ */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  border-bottom: 2px solid var(--red);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sticky-nav::-webkit-scrollbar{display:none}
+.sticky-nav a {
+  padding: 13px 22px;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.42);
+  text-decoration: none;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,.05);
+  transition: color .2s, background .2s;
+}
+.sticky-nav a:hover { color: var(--amber-lt); background: rgba(255,255,255,.03); }
+
+/* ════════════════════════
+   SECTION HEADER
+════════════════════════ */
+.sec-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 44px;
+}
+.sec-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--border);
+  flex-shrink: 0;
+}
+.section-dark .sec-num { color: rgba(255,255,255,.07); }
+.sec-title {
+  font-family: 'Tiro Devanagari Nepali', serif;
+  font-size: clamp(1.5rem,2.8vw,2.2rem);
+  line-height: 1.2;
+}
+.sec-title-en {
+  font-family: 'DM Serif Display', serif;
+  font-size: .85rem;
+  font-style: italic;
+  margin-top: 3px;
+  color: var(--muted);
+}
+.section-dark .sec-title-en { color: rgba(255,255,255,.28); }
+
+/* ════════════════════════
+   TWO-COL
+════════════════════════ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+/* ════════════════════════
+   BACKGROUND SECTION (why it happened)
+════════════════════════ */
+.reason-list { display: flex; flex-direction: column; gap: 10px; }
+.reason-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--paper);
+  border-left: 3px solid var(--border);
+}
+.reason-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.reason-dot.red   { background: var(--red); }
+.reason-dot.amber { background: var(--amber); }
+.reason-text { font-family: 'Tiro Devanagari Nepali', serif; font-size: .93rem; line-height: 1.65; }
+
+.stat2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+.stat-cell {
+  padding: 20px;
+  background: var(--paper);
+  text-align: center;
+}
+.stat-cell .n { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--red); display: block; line-height: 1; }
+.stat-cell .l { font-family: 'Tiro Devanagari Nepali', serif; font-size: .8rem; color: var(--muted); margin-top: 4px; display: block; }
+
+.district-wrap { margin-top: 16px; }
+.district-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.district-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.d-pill {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-family: 'Tiro Devanagari Nepali', serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+.d-pill.hi { background: var(--red); color: #fff; border-color: var(--red); }
+.d-pill.md { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+/* ════════════════════════
+   TIMELINE
+════════════════════════ */
+.timeline { position: relative; padding-left: 36px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--amber));
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity .45s, transform .45s;
+}
+.tl-item.vis { opacity: 1; transform: translateX(0); }
+.tl-dot {
+  position: absolute;
+  left: -33px; top: 5px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--paper2);
+  box-shadow: 0 0 0 2px var(--red-dark);
+}
+.tl-dot.am { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+.tl-time { font-family: 'Bebas Neue', sans-serif; font-size: .8rem; letter-spacing: .1em; color: var(--red); margin-bottom: 2px; }
+.tl-text { font-family: 'Tiro Devanagari Nepali', serif; font-size: .93rem; line-height: 1.65; color: var(--ink); }
+.tl-sub  { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+
+/* ════════════════════════
+   CASUALTY SECTION
+════════════════════════ */
+.donut-wrap { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; margin-bottom: 40px; }
+.donut-legend { flex: 1; min-width: 200px; }
+.dleg-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.dleg-color { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.dleg-label { font-family: 'Tiro Devanagari Nepali', serif; font-size: .9rem; line-height: 1.3; }
+.dleg-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin-left: auto; flex-shrink: 0; }
+
+.person-grid { display: flex; flex-wrap: wrap; gap: 3px; max-width: 680px; margin-bottom: 12px; }
+.p-icon {
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  cursor: default;
+  transition: transform .15s;
+}
+.p-icon:hover { transform: scale(1.5); }
+
+.legend-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px; }
+.leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.leg-dot  { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ════════════════════════
+   DAMAGE BARS (dark bg)
+════════════════════════ */
+.big-nums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+  gap: 2px;
+  margin-bottom: 44px;
+}
+.big-cell { padding: 24px 20px; background: rgba(255,255,255,.04); text-align: center; }
+.big-n { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--amber-lt); line-height: 1; display: block; }
+.big-l { font-family: 'Tiro Devanagari Nepali', serif; font-size: .8rem; color: rgba(255,255,255,.42); margin-top: 5px; display: block; }
+
+.dmg-row { margin-bottom: 32px; }
+.dmg-cat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.dmg-cat-ne { font-family: 'Tiro Devanagari Nepali', serif; font-size: .93rem; color: rgba(255,255,255,.78); }
+.dmg-cat-en { font-size: .72rem; font-style: italic; color: rgba(255,255,255,.32); }
+.dmg-track  { height: 8px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+.dmg-fill   {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(.16,1,.3,1);
+  background: linear-gradient(90deg, var(--red-dark), var(--red));
+}
+.dmg-fill.am { background: linear-gradient(90deg, var(--amber), var(--amber-lt)); }
+
+/* ════════════════════════
+   ACCOUNTABILITY
+════════════════════════ */
+.accused-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
+  gap: 2px;
+  margin-bottom: 28px;
+}
+.accused-card {
+  background: var(--paper2);
+  padding: 22px;
+  border-left: 4px solid var(--red);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .4s, transform .4s;
+}
+.accused-card.sec { border-left-color: var(--amber); }
+.accused-card.vis { opacity: 1; transform: translateY(0); }
+.accused-rank { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 5px; }
+.accused-card.sec .accused-rank { color: var(--amber); }
+.accused-name { font-family: 'Tiro Devanagari Nepali', serif; font-size: 1.05rem; color: var(--ink); line-height: 1.3; margin-bottom: 8px; }
+.accused-charge { font-size: 11px; color: var(--muted); line-height: 1.55; border-top: 1px solid var(--border); padding-top: 9px; margin-top: 9px; }
+.accused-law { font-size: 10px; letter-spacing: .07em; color: var(--red); margin-top: 7px; font-weight: 500; }
+.accused-card.sec .accused-law { color: var(--amber); }
+
+/* ════════════════════════
+   PULL QUOTE
+════════════════════════ */
+.pull-quote {
+  border-left: 4px solid var(--red);
+  padding: 20px 28px;
+  margin: 36px 0;
+  background: rgba(192,57,43,.04);
+}
+.pull-quote p {
+  font-family: 'Tiro Devanagari Nepali', serif;
+  font-size: clamp(1rem,1.8vw,1.25rem);
+  line-height: 1.75;
+}
+.pull-quote .src { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+.section-dark .pull-quote { background: rgba(192,57,43,.12); }
+.section-dark .pull-quote p { color: rgba(255,255,255,.85); }
+.section-dark .pull-quote .src { color: rgba(255,255,255,.3); }
+
+/* ════════════════════════
+   TESTIMONY PREVIEW (on home)
+════════════════════════ */
+.testy-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap: 2px;
+  margin-bottom: 28px;
+}
+.testy-card {
+  background: var(--paper);
+  padding: 24px;
+  border-top: 3px solid var(--border);
+  cursor: pointer;
+  transition: border-top-color .2s, background .2s;
+}
+.testy-card:hover { border-top-color: var(--red); background: var(--paper2); }
+.testy-role { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.testy-name { font-family: 'Tiro Devanagari Nepali', serif; font-size: 1.05rem; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.testy-excerpt { font-family: 'Tiro Devanagari Nepali', serif; font-size: .87rem; line-height: 1.65; color: var(--slate); }
+.testy-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 10px;
+  letter-spacing: .06em;
+  border: 1px solid currentColor;
+  margin-top: 10px;
+}
+.testy-tag.r { color: var(--red); }
+.testy-tag.a { color: var(--amber); }
+.testy-tag.g { color: #1e6b3f; }
+.testy-tag.s { color: var(--slate); }
+.testy-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--red);
+  text-decoration: none;
+}
+.testy-cta {
+  padding: 14px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  transition: background .2s;
+}
+.testy-cta:hover { background: var(--red); }
+
+/* ════════════════════════
+   REFORMS
+════════════════════════ */
+.reforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  gap: 2px;
+}
+.reform-card {
+  padding: 24px;
+  background: var(--paper);
+  border-top: 3px solid var(--ink);
+  transition: background .2s;
+}
+.reform-card:hover { background: var(--ink); color: var(--paper); }
+.reform-card:hover .reform-icon { filter: invert(1); }
+.reform-card:hover .reform-title { color: var(--amber-lt); }
+.reform-card:hover .reform-desc  { color: rgba(255,255,255,.55); }
+.reform-icon  { font-size: 1.5rem; margin-bottom: 10px; }
+.reform-title { font-family: 'Tiro Devanagari Nepali', serif; font-size: .95rem; margin-bottom: 7px; line-height: 1.4; transition: color .2s; }
+.reform-desc  { font-size: 11px; color: var(--muted); line-height: 1.6; transition: color .2s; }
+
+/* ════════════════════════
+   AWARDS
+════════════════════════ */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
+  gap: 16px;
+}
+.award-card {
+  background: rgba(255,255,255,.04);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.award-card::before {
+  content: '★';
+  position: absolute;
+  top: -8px; right: 10px;
+  font-size: 4.5rem;
+  color: rgba(240,198,106,.07);
+  line-height: 1;
+}
+.award-icon  { font-size: 1.6rem; margin-bottom: 10px; }
+.award-name  { font-family: 'Tiro Devanagari Nepali', serif; font-size: .95rem; margin-bottom: 7px; line-height: 1.4; }
+.award-desc  { font-size: 12px; color: rgba(255,255,255,.46); line-height: 1.65; }
+
+/* ════════════════════════
+   COMMISSION BOX
+════════════════════════ */
+.commission-box {
+  background: rgba(255,255,255,.04);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+@media(max-width:600px){.commission-box{grid-template-columns:1fr}}
+.c-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 5px; }
+.c-value { font-family: 'Tiro Devanagari Nepali', serif; font-size: .93rem; color: var(--paper); line-height: 1.5; }
+
+/* ════════════════════════
+   FOOTER
+════════════════════════ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.32);
+  padding: 36px 48px;
+  font-size: 12px;
+  line-height: 1.75;
+  border-top: 2px solid var(--red);
+}
+@media(max-width:768px){ footer{ padding:32px 24px; } }
+footer strong { color: rgba(255,255,255,.6); }
+
+/* ════════════════════════
+   RESPONSIVE
+════════════════════════ */
+@media(max-width:768px){
+  .hero-topbar, .hero-main, .hero-bottom { padding-left:24px; padding-right:24px; }
+  .hero-stats { max-width:100%; }
+  .hero-stat-n { font-size:2rem; }
+  .sticky-nav a { padding:12px 15px; }
+  .accused-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="hero-watermark">२०८२</div>
+
+  <div class="hero-topbar">
+    <span>नेपाल — काठमाडौँ</span>
+    <span>जाँचबुझ आयोग प्रतिवेदन • ९०७ पृष्ठ</span>
+    <span>२०८२ साल</span>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-eyebrow">आधिकारिक प्रतिवेदन सारांश</div>
+    <h1 class="hero-title">भाद्र <em>२३ र २४</em><br>गतेको घटना</h1>
+    <p class="hero-sub">THE BHADRA 23/24 COMMISSION REPORT — PUBLIC SUMMARY</p>
+    <p class="hero-desc">
+      जेन-जेड आन्दोलनको क्रममा भएका घटनाहरूको सत्यतथ्य पत्ता लगाउन गठित जाँचबुझ आयोगले
+      तयार पारेको प्रतिवेदनको सर्वसाधारणका लागि सहज बुझिने सारांश।
+      सबै तथ्याङ्क र निष्कर्षहरू आधिकारिक आयोग प्रतिवेदन, २०८२ मा आधारित छन्।
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-n">७६</span>
+        <span class="hero-stat-l">कुल मृत्यु</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">२,५२२</span>
+        <span class="hero-stat-l">घाइते</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">रु.८५+</span>
+        <span class="hero-stat-l">अर्ब भौतिक क्षति</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">९०७</span>
+        <span class="hero-stat-l">पृष्ठ प्रतिवेदन</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="scroll-cue">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 2v10M2 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      तल स्क्रोल गर्नुहोस्
+    </div>
+    <div class="scroll-cue">Scroll to explore</div>
+  </div>
+</header>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="sticky-nav">
+  <a href="#background">पृष्ठभूमि</a>
+  <a href="#timeline">घटनाक्रम</a>
+  <a href="#casualties">मानवीय क्षति</a>
+  <a href="#damage">भौतिक क्षति</a>
+  <a href="#accountability">जवाफदेहिता</a>
+  <a href="#testimonies">बयानहरू</a>
+  <a href="#awards">पुरस्कार</a>
+  <a href="#reforms">सुधार सुझाव</a>
+  <a href="#commission">आयोग</a>
+  <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank" style="margin-left:auto;color:var(--amber-lt);border-left:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:6px">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10h8M6 2v6M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    मूल प्रतिवेदन PDF
+  </a>
+</nav>
+
+<!-- SOURCE BANNER -->
+<div style="background:rgba(212,134,10,.1);border-bottom:1px solid rgba(212,134,10,.25);padding:10px 48px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+  <span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);flex-shrink:0">मूल स्रोत</span>
+  <span style="font-family:'Tiro Devanagari Nepali',serif;font-size:.85rem;color:var(--slate);flex:1;min-width:200px">
+    यस वेबसाइटमा प्रस्तुत सबै तथ्य र निष्कर्षहरू आधिकारिक जाँचबुझ आयोग प्रतिवेदन, २०८२ (९०७ पृष्ठ) मा आधारित छन्।
+  </span>
+  <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank"
+     style="display:inline-flex;align-items:center;gap:7px;padding:7px 16px;background:var(--amber);color:white;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 11h9M6.5 2v7M3.5 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    पूर्ण प्रतिवेदन डाउनलोड (११ MB)
+  </a>
+</div>
+<style>
+@media(max-width:768px){
+  div[style*="mूल स्रोत"]{padding-left:24px;padding-right:24px}
+}
+</style>
+
+<!-- ══════════ 01 BACKGROUND ══════════ -->
+<section class="section section-alt" id="background">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <div>
+      <h2 class="sec-title ne">किन भयो आन्दोलन?</h2>
+      <p class="sec-title-en">Why did the movement happen?</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="caps muted" style="margin-bottom:12px;">तत्कालीन कारण</p>
+      <div class="pull-quote" style="margin-top:0; margin-bottom:24px;">
+        <p class="ne">
+          नेपाल सरकारले मिति २०८२।५।१९ मा <strong>सामाजिक सञ्जालमाथि प्रतिबन्ध</strong>
+          लगाउने निर्णय र व्यापक भ्रष्टाचार तथा कुशासनविरुद्धको आक्रोशमा
+          जेन-जेड पुस्ताद्वारा आन्दोलन आह्वान गरियो।
+        </p>
+        <p class="src">— आयोग प्रतिवेदन, प्राक्कथन</p>
+      </div>
+
+      <p class="caps muted" style="margin-bottom:10px;">मूल कारणहरू</p>
+      <div class="reason-list">
+        <div class="reason-item">
+          <div class="reason-dot red"></div>
+          <div class="reason-text">व्यापक भ्रष्टाचार — ट्रान्सपरेन्सी इन्टरनेशनलको सूचीमा नेपाल १०७ औँ स्थानमा (१०० मा ३४ अङ्क, फेब्रुअरी २०२५)</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-dot red"></div>
+          <div class="reason-text">युवा बेरोजगारी दर करिब २०.३६% — युवा पलायनमा बढोत्तरी</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-dot red"></div>
+          <div class="reason-text">राजनीतिक अस्थिरता — ३५ वर्षमा ३० जना प्रधानमन्त्री, कोही पनि पाँच वर्ष टिकेनन्</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-dot red"></div>
+          <div class="reason-text">सार्वजनिक सेवा प्रवाहको अप्रभावकारिता र राजनीतिक हस्तक्षेप</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-dot amber"></div>
+          <div class="reason-text">गरिबी रेखामुनि जनसङ्ख्या २०.२७% — असमानता बढ्दो (नेपाल जीवनस्तर सर्वेक्षण, २०७९/८०)</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="caps muted" style="margin-bottom:12px;">राजनीतिक अस्थिरता</p>
+      <div class="stat2x2">
+        <div class="stat-cell">
+          <span class="n">३५</span>
+          <span class="l">वर्षमा</span>
+        </div>
+        <div class="stat-cell">
+          <span class="n">३०</span>
+          <span class="l">प्रधानमन्त्री</span>
+        </div>
+      </div>
+
+      <div class="district-wrap">
+        <p class="district-label">प्रभावित जिल्लाहरू &nbsp;
+          <span style="color:var(--red)">■</span> अत्यधिक &nbsp;
+          <span style="color:var(--amber)">■</span> मध्यम
+        </p>
+        <div class="district-pills">
+          <span class="d-pill hi">काठमाडौँ</span>
+          <span class="d-pill hi">ललितपुर</span>
+          <span class="d-pill hi">भक्तपुर</span>
+          <span class="d-pill hi">पर्सा</span>
+          <span class="d-pill md">मोरङ</span>
+          <span class="d-pill md">सुनसरी</span>
+          <span class="d-pill md">झापा</span>
+          <span class="d-pill md">चितवन</span>
+          <span class="d-pill md">कास्की</span>
+          <span class="d-pill md">रुपन्देही</span>
+          <span class="d-pill md">बाँके</span>
+          <span class="d-pill md">बारा</span>
+          <span class="d-pill">धनुषा</span>
+          <span class="d-pill">रौतहट</span>
+          <span class="d-pill">तनहुँ</span>
+          <span class="d-pill">सुर्खेत</span>
+          <span class="d-pill">कञ्चनपुर</span>
+          <span class="d-pill">कैलाली</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 TIMELINE ══════════ -->
+<section class="section" id="timeline">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <div>
+      <h2 class="sec-title ne">घटनाक्रम</h2>
+      <p class="sec-title-en">Chronology of Events</p>
+    </div>
+  </div>
+
+  <div class="timeline" id="tlContainer">
+    <div class="tl-item">
+      <div class="tl-dot am"></div>
+      <div class="tl-time">२०८२ साउन १९ — निर्णय</div>
+      <p class="tl-text ne">नेपाल सरकारले सामाजिक सञ्जालमाथि प्रतिबन्ध लगाउने निर्णय गर्‍यो।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot am"></div>
+      <div class="tl-time">भाद्र २३ — विहान</div>
+      <p class="tl-text ne">काठमाडौँको माइतीघर मण्डलाबाट शान्तिपूर्ण प्रदर्शन सुरु भयो। जेन-जेड पुस्ताद्वारा आह्वान।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २३ — दिउँसो करिब ११:३०</div>
+      <p class="tl-text ne">प्रहरीले पानीको फोहोरा (वाटर क्यानन) प्रहार गर्‍यो। प्रहरीमाथि ढुङ्गामुढा सुरु।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २३ — दिउँसो करिब १ बजे</div>
+      <p class="tl-text ne">सुरक्षा बलले गोली प्रहार सुरु गर्‍यो। <strong>करिब ४ घण्टासम्म गोली चल्यो।</strong> रोक्ने कुनै आदेश आएन।</p>
+      <p class="tl-sub">Security forces fired live ammunition for ~4 hours with no order to stop</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २३ — साँझसम्म</div>
+      <p class="tl-text ne">त्यस दिन <strong>१७ जनाको मृत्यु।</strong> सयौँ घाइते। त्यसै दिन गोली लागेका घाइतेमध्ये पछि थप १२ जनाको मृत्यु।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २३ — राति १०:०० बजे</div>
+      <p class="tl-text ne">मात्र राति राष्ट्रिय सुरक्षा परिषद् बैठक बस्यो। सामाजिक सञ्जाल प्रतिबन्ध हटाइयो।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २४ — विहान</div>
+      <p class="tl-text ne">भाद्र २३ को घटनाको भिडियो सामाजिक सञ्जालमा फैलियो। देशभर व्यापक आक्रोश।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-time">भाद्र २४ — दिनभर</div>
+      <p class="tl-text ne">अपराधिक प्रवृत्तिका व्यक्ति र लुटेरा समूहले सिंहदरबार, सर्वोच्च अदालत, राष्ट्रपति भवन, प्रधानमन्त्री निवास लगायतमा आगजनी, तोडफोड र लुटपाट गरे।</p>
+      <p class="tl-sub">आयोगको निष्कर्ष: जेन-जेड पुस्ताले यो हिंसा गरेको होइन</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot am"></div>
+      <div class="tl-time">भाद्र २४ — परिणाम</div>
+      <p class="tl-text ne">सरकारको विघटन। प्रतिनिधि सभा भङ्ग। असामान्य स्थिति सिर्जना।</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot am"></div>
+      <div class="tl-time">२०८२ असोज ५ — आयोग गठन</div>
+      <p class="tl-text ne">नेपाल सरकारको निर्णयअनुसार जाँचबुझ आयोगको गठन। असोज ९ गतेदेखि काम सुरु।</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 CASUALTIES ══════════ -->
+<section class="section section-alt" id="casualties">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <div>
+      <h2 class="sec-title ne">मानवीय क्षति</h2>
+      <p class="sec-title-en">Human Cost — आयोग प्रतिवेदन, परिच्छेद ४</p>
+    </div>
+  </div>
+
+  <div class="donut-wrap">
+    <svg width="190" height="190" viewBox="0 0 190 190">
+      <circle cx="95" cy="95" r="72" fill="none" stroke="#ede7d9" stroke-width="26"/>
+      <circle cx="95" cy="95" r="72" fill="none" stroke="#c0392b" stroke-width="26"
+        stroke-dasharray="282 452" stroke-dashoffset="113" transform="rotate(-90 95 95)"/>
+      <circle cx="95" cy="95" r="72" fill="none" stroke="#d4860a" stroke-width="26"
+        stroke-dasharray="196 452" stroke-dashoffset="-169" transform="rotate(-90 95 95)"/>
+      <circle cx="95" cy="95" r="72" fill="none" stroke="#7f8c8d" stroke-width="26"
+        stroke-dasharray="20 452" stroke-dashoffset="-365" transform="rotate(-90 95 95)"/>
+      <text x="95" y="89" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="34" fill="#0f0e0d">७६</text>
+      <text x="95" y="108" text-anchor="middle" font-family="'Tiro Devanagari Nepali',serif" font-size="11" fill="#7f8c8d">कुल मृत्यु</text>
+    </svg>
+
+    <div class="donut-legend">
+      <div class="dleg-item">
+        <div class="dleg-color" style="background:var(--red)"></div>
+        <div>
+          <div class="dleg-label ne">सुरक्षाकर्मीको गोलीबाट मृत्यु</div>
+          <div style="font-size:11px;color:var(--muted)">Killed by security forces' gunfire</div>
+        </div>
+        <span class="dleg-num" style="color:var(--red)">४२</span>
+      </div>
+      <div class="dleg-item">
+        <div class="dleg-color" style="background:var(--amber)"></div>
+        <div>
+          <div class="dleg-label ne">लुटपाट तथा अन्य कारण</div>
+          <div style="font-size:11px;color:var(--muted)">During looting and other causes</div>
+        </div>
+        <span class="dleg-num" style="color:var(--amber)">३१</span>
+      </div>
+      <div class="dleg-item">
+        <div class="dleg-color" style="background:var(--muted)"></div>
+        <div>
+          <div class="dleg-label ne">प्रदर्शनकारीको आक्रमणबाट प्रहरी</div>
+          <div style="font-size:11px;color:var(--muted)">Police killed by protesters</div>
+        </div>
+        <span class="dleg-num" style="color:var(--muted)">३</span>
+      </div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <div class="dleg-item">
+          <div class="dleg-color" style="background:var(--amber-lt)"></div>
+          <div>
+            <div class="dleg-label ne">घाइते (सुरक्षाकर्मी सहित)</div>
+            <div style="font-size:11px;color:var(--muted)">Injured including security forces</div>
+          </div>
+          <span class="dleg-num" style="color:var(--amber)">२,५२२</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="caps muted" style="margin-bottom:10px;">प्रत्येक चिह्न एउटा ज्यान हो — Each symbol represents one life lost</p>
+  <div class="person-grid" id="personGrid"></div>
+  <div class="legend-row">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>गोलीबाट मृत्यु (४२)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--amber)"></div>अन्य कारण (३१)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--muted)"></div>प्रहरी मृत्यु (३)</div>
+  </div>
+
+  <div class="pull-quote" style="margin-top:36px;">
+    <p class="ne">
+      "भाद्र २३ गते गोली प्रहारबाट केहीको मृत्यु भइसकेपछि पनि गोली रोक्नतिर
+      त्कालीन प्रधानमन्त्री लगायत कुनै पनि पदाधिकारीहरू अग्रसर नभई
+      <strong>लापरबाहीपूर्ण र हेलचेक्र्याईपूर्ण</strong> कृयाकलाप र व्यवहार गरेका कारणले नै
+      अत्यधिक मानवीय क्षति हुन गयो।"
+    </p>
+    <p class="src">— आयोगको मुख्य निष्कर्ष, परिच्छेद १३</p>
+  </div>
+</section>
+
+<!-- ══════════ 04 DAMAGE ══════════ -->
+<section class="section section-dark" id="damage">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <div>
+      <h2 class="sec-title ne">भौतिक क्षति</h2>
+      <p class="sec-title-en">Physical Damage</p>
+    </div>
+  </div>
+
+  <div class="big-nums">
+    <div class="big-cell"><span class="big-n">रु.८५+</span><span class="big-l">अर्ब कुल भौतिक क्षति</span></div>
+    <div class="big-cell"><span class="big-n">१३+</span><span class="big-l">जिल्लामा स्थलगत अवलोकन</span></div>
+    <div class="big-cell"><span class="big-n">७७</span><span class="big-l">जिल्लामा घटना</span></div>
+    <div class="big-cell"><span class="big-n">७</span><span class="big-l">प्रदेश प्रभावित</span></div>
+  </div>
+
+  <div class="dmg-row">
+    <div class="dmg-cat"><span class="dmg-cat-ne">सरकारी भवन, कार्यालय र पालिकाहरू</span><span class="dmg-cat-en">Govt buildings &amp; municipalities</span></div>
+    <div class="dmg-track"><div class="dmg-fill" data-w="88"></div></div>
+  </div>
+  <div class="dmg-row">
+    <div class="dmg-cat"><span class="dmg-cat-ne">प्रहरी कार्यालय, हतियार र सवारी साधन</span><span class="dmg-cat-en">Police offices, weapons &amp; vehicles</span></div>
+    <div class="dmg-track"><div class="dmg-fill" data-w="74"></div></div>
+  </div>
+  <div class="dmg-row">
+    <div class="dmg-cat"><span class="dmg-cat-ne">निजी व्यापारिक प्रतिष्ठान र घरहरू</span><span class="dmg-cat-en">Private businesses &amp; residences</span></div>
+    <div class="dmg-track"><div class="dmg-fill am" data-w="60"></div></div>
+  </div>
+  <div class="dmg-row">
+    <div class="dmg-cat"><span class="dmg-cat-ne">अदालत, स्वास्थ्य संस्था, सार्वजनिक सेवा</span><span class="dmg-cat-en">Courts, health facilities, public services</span></div>
+    <div class="dmg-track"><div class="dmg-fill am" data-w="44"></div></div>
+  </div>
+  <div class="dmg-row">
+    <div class="dmg-cat"><span class="dmg-cat-ne">राजनीतिक दलका कार्यालयहरू</span><span class="dmg-cat-en">Political party offices</span></div>
+    <div class="dmg-track"><div class="dmg-fill am" data-w="34"></div></div>
+  </div>
+
+  <div style="margin-top:32px;padding:18px 22px;border:1px solid var(--border-dk)">
+    <p class="ne" style="font-size:.9rem;color:rgba(255,255,255,.58);line-height:1.75">
+      ⚠ आयोगको निष्कर्ष: भाद्र २४ गते जेन-जेड पुस्ताले हिंसात्मक गतिविधि
+      <strong style="color:var(--amber-lt)">गरेको होइन</strong> —
+      अपराधिक प्रवृत्तिका व्यक्ति र लुटेरा समूहले भाद्र २३ को सरकारी कार्वाहीको
+      कमजोरीको फाइदा उठाई हिंसा गरे।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 05 ACCOUNTABILITY ══════════ -->
+<section class="section" id="accountability">
+  <div class="sec-header">
+    <span class="sec-num">05</span>
+    <div>
+      <h2 class="sec-title ne">जवाफदेहिता र कारबाही सिफारिस</h2>
+      <p class="sec-title-en">Accountability &amp; Legal Recommendations — परिच्छेद १३</p>
+    </div>
+  </div>
+
+  <p class="ne" style="font-size:.95rem;color:var(--muted);margin-bottom:28px;max-width:620px;line-height:1.75">
+    आयोगले मुलुकी अपराध संहिता, २०७४ को <strong>दफा १८१ (लापरबाही)</strong> र
+    <strong>दफा १८२ (हेलचेक्र्याई)</strong> अनुसार अनुसन्धान र अभियोजनका लागि सिफारिस।
+  </p>
+
+  <p class="caps muted" style="margin-bottom:14px;">Tier 1 — फौजदारी अभियोजन सिफारिस</p>
+  <div class="accused-grid" style="margin-bottom:24px">
+    <div class="accused-card" id="ac1">
+      <div class="accused-rank">त्कालीन प्रधानमन्त्री</div>
+      <div class="accused-name">के.पी. शर्मा ओली</div>
+      <div class="accused-charge">गोली चल्दा करिब ४ घण्टासम्म रोक्ने प्रयास नगरेको; राष्ट्रिय सुरक्षा परिषद् बैठक राति मात्र बोलाएको; आयोगलाई सहयोग नगरेको</div>
+      <div class="accused-law">दफा १८१(१) + दफा १८२ — मुलुकी अपराध संहिता</div>
+    </div>
+    <div class="accused-card" id="ac2">
+      <div class="accused-rank">त्कालीन गृहमन्त्री</div>
+      <div class="accused-name">रमेश लेखक</div>
+      <div class="accused-charge">गृह प्रशासन र सुरक्षा निकायको सम्पूर्ण जिम्मेवारी भएकाले; दिउँसोदेखि नै मानवीय क्षति भइरहँदा पनि थप क्षति रोक्न पहल नगरेको</div>
+      <div class="accused-law">दफा १८१(१) + दफा १८२ — मुलुकी अपराध संहिता</div>
+    </div>
+    <div class="accused-card" id="ac3">
+      <div class="accused-rank">त्कालीन IGP</div>
+      <div class="accused-name">चन्द्रकुबेर खापुङ</div>
+      <div class="accused-charge">गोली चल्दा सुधारात्मक आदेश नदिएको; बल प्रयोगको आनुपातिकता र आवश्यकताको सिद्धान्त पालना नगरेको</div>
+      <div class="accused-law">दफा १८१(१) + दफा १८२ — मुलुकी अपराध संहिता</div>
+    </div>
+  </div>
+
+  <p class="caps muted" style="margin-bottom:14px;">Tier 2 — सेवा सम्बन्धी कानून बमोजिम कारबाही</p>
+  <div class="accused-grid">
+    <div class="accused-card sec" id="ac4">
+      <div class="accused-rank">त्कालीन गृहसचिव</div>
+      <div class="accused-name">गोकर्णमणि दुवाडी</div>
+      <div class="accused-charge">हेलचेक्र्याईपूर्ण आदेश र कार्य; उचित समन्वय नगरेको</div>
+      <div class="accused-law" style="color:var(--amber)">दफा १८२ — हेलचेक्र्याई</div>
+    </div>
+    <div class="accused-card sec" id="ac5">
+      <div class="accused-rank">IGP, सशस्त्र प्रहरी बल</div>
+      <div class="accused-name">राजु अयार्ल</div>
+      <div class="accused-charge">गोली चल्दा रोक्न लगाउन नसकेको; शासकीय अधिकारको उचित प्रयोगप्रति उदासीन</div>
+      <div class="accused-law" style="color:var(--amber)">दफा १८२ — हेलचेक्र्याई</div>
+    </div>
+    <div class="accused-card sec" id="ac6">
+      <div class="accused-rank">त्कालीन प्रमुख, राष्ट्रिय अनुसन्धान विभाग</div>
+      <div class="accused-name">हुतराज थापा</div>
+      <div class="accused-charge">सही समयमा सही सूचना नदिएको; घटनाको पूर्वसूचना प्रवाहमा कमजोरी</div>
+      <div class="accused-law" style="color:var(--amber)">दफा १८२ — हेलचेक्र्याई</div>
+    </div>
+    <div class="accused-card sec" id="ac7">
+      <div class="accused-rank">त्कालीन प्रजिअ, काठमाडौँ</div>
+      <div class="accused-name">खविलाल रिजाल</div>
+      <div class="accused-charge">जिल्ला स्तरमा सुरक्षा समन्वय र व्यवस्थापनमा कमजोरी</div>
+      <div class="accused-law" style="color:var(--amber)">दफा १८२ — हेलचेक्र्याई</div>
+    </div>
+    <div class="accused-card sec" id="ac8">
+      <div class="accused-rank">हालका IGP (तत्कालीन AIg)</div>
+      <div class="accused-name">दानबहादुर काकी</div>
+      <div class="accused-charge">भाद्र २४ को घटनामा प्रहरी कार्यालय जलाइए, हतियार लुटिए — प्रहरी ऐन बमोजिम कारबाही</div>
+      <div class="accused-law" style="color:var(--amber)">प्रहरी ऐन, २०१२ — नियम ११२</div>
+    </div>
+  </div>
+
+  <p class="ne" style="margin-top:24px;padding:18px 22px;background:var(--paper2);border-left:3px solid var(--border);font-size:.88rem;color:var(--muted);line-height:1.7">
+    यसबाहेक नेपाल प्रहरीका <strong style="color:var(--ink)">५ वरिष्ठ पदाधिकारी</strong>,
+    सशस्त्र प्रहरीका <strong style="color:var(--ink)">३ अधिकृत</strong>,
+    नेपाली सेनाका <strong style="color:var(--ink)">४ कमाण्डर</strong> र
+    राष्ट्रिय अनुसन्धान विभागका <strong style="color:var(--ink)">२ अधिकारी</strong>
+    माथि पनि विभागीय कारबाहीको सिफारिस।
+  </p>
+</section>
+
+<!-- ══════════ 06 TESTIMONIES PREVIEW ══════════ -->
+<section class="section section-alt" id="testimonies">
+  <div class="sec-header">
+    <span class="sec-num">06</span>
+    <div>
+      <h2 class="sec-title ne">बयानहरू र अन्तर्वार्ताहरू</h2>
+      <p class="sec-title-en">Testimonies &amp; Interrogations — परिच्छेद ५</p>
+    </div>
+  </div>
+
+  <p class="ne" style="font-size:.95rem;color:var(--muted);margin-bottom:28px;max-width:640px;line-height:1.75">
+    जाँचबुझ आयोगले राजनीतिक नेतृत्व, सुरक्षा पदाधिकारी, प्रत्यक्षदर्शी, घाइते र
+    मृतकका परिवारसँग लिएका बयानहरूबाट मुख्य अंश।
+  </p>
+
+  <div class="testy-preview-grid">
+
+    <div class="testy-card">
+      <div class="testy-role">त्कालीन प्रधानमन्त्री</div>
+      <div class="testy-name ne">KP शर्मा ओली</div>
+      <div class="testy-excerpt ne">"प्रधानमन्त्रीले प्रहरीलाई आदेश दिने होइन, यसको लागि गृह मन्त्रालय विभागीय मन्त्रालयको रूपमा नै रहन्छ। तर्कपूर्ण ढङ्गले प्रधानमन्त्री यो विषयमा जवाफदेही हुँदैन।"</div>
+      <span class="testy-tag r">अभियोजन सिफारिस</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#oli">पूर्ण बयान पढ्नुहोस् →</a></div>
+    </div>
+
+    <div class="testy-card">
+      <div class="testy-role">त्कालीन गृहमन्त्री</div>
+      <div class="testy-name ne">रमेश लेखक</div>
+      <div class="testy-excerpt ne">"भाद्र २३ गतेको दुःखद र अकल्पनीय घटनाको कारण म अत्यन्त दुःखी र मर्माहत भई ठूलो पीडाबोधका कारण मैले त्काल नैतिक जिम्मेवारी लिँदै गृहमन्त्रीको पदबाट राजिनामा दिएँ।"</div>
+      <span class="testy-tag r">अभियोजन सिफारिस</span>
+      <span class="testy-tag a">राजिनामा दिए</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#lekhak">पूर्ण बयान पढ्नुहोस् →</a></div>
+    </div>
+
+    <div class="testy-card">
+      <div class="testy-role">त्कालीन IGP</div>
+      <div class="testy-name ne">चन्द्रकुबेर खापुङ</div>
+      <div class="testy-excerpt ne">गोली चल्दा करिब ४ घण्टासम्म सुधारात्मक आदेश दिएनन्। सैन्य मुख्यालयमा बसेर आदेश दिइरहेका थिए। बल प्रयोगको आनुपातिकताको सिद्धान्त पालना गरेनन्।</div>
+      <span class="testy-tag r">अभियोजन सिफारिस</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#khapung">पूर्ण बयान पढ्नुहोस् →</a></div>
+    </div>
+
+    <div class="testy-card">
+      <div class="testy-role">मृतक परिवार — ४२+ बयान</div>
+      <div class="testy-name ne">मृतकका परिवारहरू</div>
+      <div class="testy-excerpt ne">"मेरो दाइलाई मृत्युको अवस्थामा पुर्‍याउने कार्यमा संलग्न रहेका त्कालीन प्रधानमन्त्री, गृहमन्त्री र गोली फायर गर्ने प्रहरीसहितलाई कारबाही होस्।" — मृतक प्रविण कुलुङका भाइ</div>
+      <span class="testy-tag g">मृतक परिवार</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#families">सबै बयान पढ्नुहोस् →</a></div>
+    </div>
+
+    <div class="testy-card">
+      <div class="testy-role">पूर्व प्रधानमन्त्री</div>
+      <div class="testy-name ne">शेरबहादुर देउवा</div>
+      <div class="testy-excerpt ne">"भाद्र २४ गते बिहान प्रदर्शनकारीहरू मेरो निजी निवासमा भेला भई नाराबाजी गर्दा सुरक्षाकर्मीले रोक्दारोक्दै हामीमाथि हातपात भयो र केही जेन-जेडका युवाहरूले बचाए।"</div>
+      <span class="testy-tag s">राजनीतिक नेता</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#deuba">पूर्ण बयान पढ्नुहोस् →</a></div>
+    </div>
+
+    <div class="testy-card">
+      <div class="testy-role">त्कालीन मुख्यसचिव</div>
+      <div class="testy-name ne">एकनारायण अर्याल</div>
+      <div class="testy-excerpt ne">"माइतीघरदेखि बानेश्वरसम्म जुलुस जाने अनुमान भए पनि यसले यति ठूलो क्षति निम्त्याउँछ भन्ने मूल्याङ्कन सुरक्षा निकायबाट प्राप्त भएन।"</div>
+      <span class="testy-tag s">प्रशासनिक</span>
+      <div><a class="testy-link" href="bhadra-testimonies.html#aryal">पूर्ण बयान पढ्नुहोस् →</a></div>
+    </div>
+
+  </div>
+
+  <a class="testy-cta" href="bhadra-testimonies.html">
+    सबै बयानहरू हेर्नुहोस् — View All Testimonies
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ══════════ 07 AWARDS ══════════ -->
+<section class="section section-dark" id="awards">
+  <div class="sec-header">
+    <span class="sec-num">07</span>
+    <div>
+      <h2 class="sec-title ne">पुरस्कार सिफारिस</h2>
+      <p class="sec-title-en">Recommendations for Recognition</p>
+    </div>
+  </div>
+
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🏥</div>
+      <div class="award-name ne">एकता शाह — आन्दोलनकी घाइते</div>
+      <div class="award-desc ne">भाद्र २३ गते गोली लागेर घाइते। स्ट्रेचरमा बसेर MBBS इन्ट्रान्स परीक्षा दिई <strong style="color:var(--amber-lt)">५७.५% ले उत्तीर्ण।</strong> MBBS मा छात्रवृत्तिमा भर्नाको सिफारिस।</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🏨</div>
+      <div class="award-name ne">शिवराम बाँडा — होटल सञ्चालक, कोटेश्वर</div>
+      <div class="award-desc ne">भाद्र २४ गते प्रदर्शनकारीहरूबाट भागेका प्रहरी कर्मचारीहरूलाई होटलमा लुकाई, खाना दिई, कपडा किनिदिई ज्यान बचाए।</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">⌚</div>
+      <div class="award-name ne">नगता कुमारी साह — घडी पसल सञ्चालक</div>
+      <div class="award-desc ne">प्रहरीलाई बचाउन जाँदा आफ्नै शरीरमा आगो लाग्यो तर प्रहरी हवल्दारको ज्यान बचाइन्। <strong style="color:var(--amber-lt)">आफ्नो ज्यानको बाजी लगाइन्।</strong></div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🚔</div>
+      <div class="award-name ne">प्रहरी अधिकृत — ६ जना</div>
+      <div class="award-desc ne">आक्रमणकारीहरूबाट डटेर आफ्नो प्रहरी कार्यालय र हतियार बचाउने ६ प्रहरी नायब उपरीक्षकहरू। काठमाडौँ र कास्की लगायत जिल्लाहरूबाट।</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 REFORMS ══════════ -->
+<section class="section" id="reforms">
+  <div class="sec-header">
+    <span class="sec-num">08</span>
+    <div>
+      <h2 class="sec-title ne">शासकीय सुधारका सुझाव</h2>
+      <p class="sec-title-en">Recommendations for Governance Reform — परिच्छेद १४</p>
+    </div>
+  </div>
+
+  <div class="reforms-grid">
+    <div class="reform-card">
+      <div class="reform-icon">🗳️</div>
+      <div class="reform-title ne">राजनीतिक दल र निर्वाचन सुधार</div>
+      <div class="reform-desc ne">दलभित्र आन्तरिक लोकतन्त्र; नेतृत्वमा सिन्डिकेट हटाउने; निर्वाचन खर्चको सार्वजनिकीकरण; सम्पत्ति विवरण समयमै पेश गर्ने</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">⚖️</div>
+      <div class="reform-title ne">न्यायपालिकामा सुधार</div>
+      <div class="reform-desc ne">न्यायिक नियुक्तिमा राजनीतिक हस्तक्षेप अन्त्य; न्यायाधीशको स्वतन्त्रता सुनिश्चित; पारदर्शिता बढाउने</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">🏛️</div>
+      <div class="reform-title ne">प्रशासनिक सुधार</div>
+      <div class="reform-desc ne">निजामती सेवामा राजनीतिक हस्तक्षेप शून्य; नियुक्ति, सरुवा, बढुवामा पारदर्शिता; जवाफदेहिता संस्कृति स्थापना</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">🛡️</div>
+      <div class="reform-title ne">सुरक्षा निकाय सुधार</div>
+      <div class="reform-desc ne">बल प्रयोगको स्पष्ट मापदण्ड (ROE); प्रदर्शन व्यवस्थापन प्रोटोकल अद्यावधिक; सुरक्षाकर्मीको मनोबल वृद्धि</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">📱</div>
+      <div class="reform-title ne">सामाजिक सञ्जाल नीति</div>
+      <div class="reform-desc ne">स्वेच्छाचारी प्रतिबन्धको अन्त्य; नागरिकको अभिव्यक्ति स्वतन्त्रताको सम्मान; डिजिटल अधिकारको रक्षा</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">💼</div>
+      <div class="reform-title ne">रोजगारी र युवा नीति</div>
+      <div class="reform-desc ne">युवा बेरोजगारी (२०.३६%) समाधान; विदेश पलायन रोक्न स्वदेशमा अवसर सृजना; सीप विकास कार्यक्रम</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">🔍</div>
+      <div class="reform-title ne">भ्रष्टाचार नियन्त्रण</div>
+      <div class="reform-desc ne">अख्तियारको स्वतन्त्रता र प्रभावकारिता; ठूला भ्रष्टाचार मुद्दामा कठोर कारबाही; सार्वजनिक खरिदमा पारदर्शिता</div>
+    </div>
+    <div class="reform-card">
+      <div class="reform-icon">📰</div>
+      <div class="reform-title ne">स्वतन्त्र प्रेस र सूचना</div>
+      <div class="reform-desc ne">पत्रकारको सुरक्षा; स्व-सेन्सरसिप हटाउन सक्षम वातावरण; सार्वजनिक सूचनाको पहुँच सुनिश्चित</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 09 COMMISSION ══════════ -->
+<section class="section section-dark" id="commission">
+  <div class="sec-header">
+    <span class="sec-num">09</span>
+    <div>
+      <h2 class="sec-title ne">आयोगको बारेमा</h2>
+      <p class="sec-title-en">About the Commission</p>
+    </div>
+  </div>
+
+  <div class="commission-box" style="margin-bottom:28px">
+    <div><div class="c-label">आयोगको नाम</div><div class="c-value ne">भाद्र २३/२४ जाँचबुझ आयोग (करकी आयोग)</div></div>
+    <div><div class="c-label">गठन मिति</div><div class="c-value ne">२०८२ असोज ५ — काम सुरु असोज ९</div></div>
+    <div><div class="c-label">काम अवधि</div><div class="c-value ne">तीन महिना + तीन पटक थप (~५.५ महिना)</div></div>
+    <div><div class="c-label">प्रतिवेदन पृष्ठ</div><div class="c-value ne">९०७ पृष्ठ</div></div>
+    <div><div class="c-label">अनुसन्धान विधि</div><div class="c-value ne">स्थलगत अवलोकन, बयान, CCTV, BTS data, अन्तर्वार्ता</div></div>
+    <div><div class="c-label">१३ जिल्लामा</div><div class="c-value ne">अध्यक्ष र सदस्यको नेतृत्वमा स्थलगत अवलोकन</div></div>
+  </div>
+
+  <div style="padding:20px 24px;border:1px solid var(--border-dk);margin-bottom:20px">
+    <p class="ne" style="font-size:.93rem;color:rgba(255,255,255,.65);line-height:1.8">
+      आयोगले जाँचबुझ आयोग ऐन, २०२६ र प्रचलित कानूनका साथै नैतिकताको कसीमा रही
+      निष्पक्ष ढङ्गले छानबिन गरी यो प्रतिवेदन तयार गरेको छ।
+    </p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:7px">
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--red);color:var(--red)">९०७ पृष्ठ</span>
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--amber);color:var(--amber)">BTS Data विश्लेषण</span>
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.4)">CCTV Footage</span>
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.4)">२,५०० + बयान</span>
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--red);color:var(--red)">फोरेन्सिक साक्ष्य</span>
+    <span style="display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--amber);color:var(--amber)">१८ जिल्लाका CDO बयान</span>
+  </div>
+</section>
+
+<footer>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:780px;margin-bottom:28px">
+    <div>
+      <strong>यो वेबसाइट के हो?</strong><br>
+      यो वेबसाइट आधिकारिक जाँचबुझ आयोग प्रतिवेदनको सर्वसाधारणका लागि
+      सहज बुझिने इन्फोग्राफिक सारांश हो।
+      यो कुनै आधिकारिक सरकारी वेबसाइट होइन।
+    </div>
+    <div>
+      <strong>स्रोत</strong><br>
+      सबै तथ्याङ्क र निष्कर्षहरू आधिकारिक
+      <strong>भाद्र २३/२४ जाँचबुझ आयोग प्रतिवेदन, २०८२</strong> बाट
+      लिइएका हुन्। प्रतिवेदनमा रहेका सबै तथ्यहरू आयोगको आधिकारिक छानबिनमा आधारित छन्।<br><br>
+      <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;color:var(--amber-lt);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(240,198,106,.3);padding:6px 12px;margin-top:6px">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10h8M6 2v6M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        पूर्ण प्रतिवेदन PDF डाउनलोड
+      </a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;font-size:11px;letter-spacing:.04em">
+    स्रोत: भाद्र २३/२४ जाँचबुझ आयोग प्रतिवेदन, नेपाल सरकार, २०८२ •
+    Source: Bhadra 23/24 Inquiry Commission Report, Government of Nepal, 2082 BS •
+    <a href="bhadra_23-24-karki-aayog-pratibedan.pdf" target="_blank" style="color:var(--amber-lt)">Download PDF (11 MB)</a>
+  </div>
+</footer>
+
+<script>
+/* ── intersection observer: timeline, accused cards ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: .12 });
+document.querySelectorAll('.tl-item, .accused-card').forEach((el,i) => {
+  el.style.transitionDelay = (i % 6) * .08 + 's';
+  io.observe(el);
+});
+
+/* ── damage bars ── */
+const dmgObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.dmg-fill').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+    }
+  });
+}, { threshold: .25 });
+const dmgSection = document.getElementById('damage');
+if (dmgSection) dmgObs.observe(dmgSection);
+
+/* ── person grid ── */
+const grid = document.getElementById('personGrid');
+if (grid) {
+  const colors = ['#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#c0392b','#c0392b','#c0392b','#c0392b','#c0392b','#c0392b',
+                  '#d4860a','#d4860a','#d4860a','#d4860a','#d4860a','#d4860a',
+                  '#d4860a','#d4860a','#d4860a','#d4860a','#d4860a','#d4860a',
+                  '#d4860a','#d4860a','#d4860a','#d4860a','#d4860a','#d4860a',
+                  '#d4860a','#d4860a','#d4860a','#d4860a','#d4860a','#d4860a',
+                  '#d4860a','#d4860a','#d4860a','#d4860a','#d4860a','#d4860a',
+                  '#d4860a','#7f8c8d','#7f8c8d','#7f8c8d'];
+  colors.forEach((c,i) => {
+    const d = document.createElement('div');
+    d.className = 'p-icon';
+    d.style.color = c;
+    d.title = i < 42 ? 'गोलीबाट मृत्यु' : i < 73 ? 'अन्य कारण' : 'प्रहरी मृत्यु';
+    d.textContent = '▲';
+    grid.appendChild(d);
+  });
+}
+
+/* ── smooth scroll ── */
+document.querySelectorAll('.sticky-nav a, a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const t = document.getElementById(href.slice(1));
+      if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
