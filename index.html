@@ -577,6 +577,136 @@ footer strong { color: rgba(255,255,255,.6); }
   .sticky-nav a { padding:12px 15px; }
   .accused-grid { grid-template-columns:1fr; }
 }
+
+/* ════════════════════════
+   EVIDENCE / FINDINGS SECTIONS
+════════════════════════ */
+.finding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap: 2px;
+  margin-bottom: 32px;
+}
+.finding-cell {
+  background: rgba(255,255,255,.04);
+  padding: 22px 20px;
+  text-align: center;
+}
+.finding-n { font-family:'Bebas Neue',sans-serif; font-size:2.6rem; line-height:1; display:block; color:var(--red); }
+.finding-n.am { color:var(--amber-lt); }
+.finding-n.wh { color:rgba(255,255,255,.8); }
+.finding-l { font-family:'Tiro Devanagari Nepali',serif; font-size:.8rem; color:rgba(255,255,255,.42); margin-top:5px; display:block; }
+
+.finding-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 13px 16px;
+  background: rgba(255,255,255,.04);
+  margin-bottom: 6px;
+  border-left: 3px solid rgba(255,255,255,.1);
+}
+.finding-row.crit { border-left-color: var(--red); background: rgba(192,57,43,.1); }
+.finding-row.am   { border-left-color: var(--amber); }
+.finding-icon { font-size: .95rem; flex-shrink:0; margin-top:2px; }
+.finding-text { font-family:'Tiro Devanagari Nepali',serif; font-size:.9rem; line-height:1.65; color:rgba(255,255,255,.82); }
+.finding-text strong { color:var(--amber-lt); }
+.finding-text em { color:var(--red); font-style:normal; }
+
+.wound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+  gap: 2px;
+  margin: 20px 0;
+}
+.wound-cell {
+  padding: 16px;
+  background: rgba(255,255,255,.04);
+  text-align: center;
+}
+.wound-n { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--red); display:block; line-height:1; }
+.wound-l { font-family:'Tiro Devanagari Nepali',serif; font-size:.75rem; color:rgba(255,255,255,.42); margin-top:4px; display:block; }
+
+.discord-timeline {
+  border-left: 2px solid rgba(255,255,255,.1);
+  padding-left: 20px;
+  margin: 20px 0;
+}
+.dt-item { margin-bottom: 20px; position: relative; }
+.dt-item::before {
+  content:'';
+  position:absolute; left:-25px; top:6px;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--muted);
+  border:2px solid var(--paper2);
+}
+.dt-item.red::before  { background:var(--red); }
+.dt-item.am::before   { background:var(--amber); }
+.dt-time { font-family:'Bebas Neue',sans-serif; font-size:.75rem; letter-spacing:.1em; color:var(--red); margin-bottom:3px; }
+.dt-item.am .dt-time  { color:var(--amber); }
+.dt-text { font-family:'Tiro Devanagari Nepali',serif; font-size:.88rem; line-height:1.65; color:rgba(255,255,255,.75); }
+.dt-text strong { color:var(--amber-lt); }
+.dt-quote {
+  margin-top: 6px;
+  padding: 7px 12px;
+  background: rgba(255,255,255,.05);
+  border-left: 2px solid var(--red);
+  font-size:.78rem;
+  color:rgba(255,255,255,.5);
+  font-style:italic;
+  font-family:'DM Sans',sans-serif;
+}
+
+.prison-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 2px;
+  margin: 20px 0;
+}
+.prison-bar-item { padding: 16px 18px; background: var(--paper2); }
+.prison-bar-label { font-family:'Tiro Devanagari Nepali',serif; font-size:.83rem; color:var(--muted); margin-bottom:7px; }
+.prison-bar-track { height:6px; background:var(--border); border-radius:2px; overflow:hidden; margin-bottom:5px; }
+.prison-bar-fill  { height:100%; border-radius:2px; background:var(--red); width:0; transition:width 1.2s cubic-bezier(.16,1,.3,1); }
+.prison-bar-num   { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); }
+
+.gov-decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 20px 0;
+}
+@media(max-width:600px){ .gov-decision-grid { grid-template-columns:1fr; } }
+.gov-cell { padding: 22px; }
+.gov-cell.empty { background:rgba(192,57,43,.06); border:1px solid rgba(192,57,43,.2); }
+.gov-cell.done  { background:var(--paper2); }
+.gov-cell-label { font-size:9px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:8px; }
+.gov-cell.empty .gov-cell-label { color:var(--red); }
+.gov-cell.done  .gov-cell-label { color:var(--muted); }
+.gov-cell-body  { font-family:'Tiro Devanagari Nepali',serif; font-size:.9rem; line-height:1.65; }
+.gov-cell.empty .gov-cell-body  { color:var(--red-dark); }
+.gov-cell.done  .gov-cell-body  { color:var(--slate); }
+.gov-cell-icon  { font-size:1.4rem; margin-bottom:8px; }
+
+.bts-visual {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 20px 0;
+}
+.bts-block { padding: 20px; background: var(--paper2); flex:1; min-width: 180px; }
+.bts-n { font-family:'Bebas Neue',sans-serif; font-size:2.6rem; color:var(--ink); line-height:1; display:block; }
+.bts-l { font-family:'Tiro Devanagari Nepali',serif; font-size:.8rem; color:var(--muted); margin-top:4px; display:block; }
+.bts-sub { font-size:10px; color:var(--muted); margin-top:3px; letter-spacing:.04em; display:block; }
+
+.tob-card {
+  background: var(--paper2);
+  padding: 22px;
+  border-left: 4px solid var(--red);
+  margin-bottom: 6px;
+}
+.tob-title { font-family:'Tiro Devanagari Nepali',serif; font-size:1rem; color:var(--ink); margin-bottom:6px; }
+.tob-body  { font-size:.87rem; color:var(--muted); line-height:1.65; }
+
 </style>
 </head>
 <body>
@@ -639,6 +769,12 @@ footer strong { color: rgba(255,255,255,.6); }
   <a href="#casualties">मानवीय क्षति</a>
   <a href="#damage">भौतिक क्षति</a>
   <a href="#accountability">जवाफदेहिता</a>
+  <a href="#gov-decisions">सरकारी निर्णय</a>
+  <a href="#evidence">भौतिक प्रमाण</a>
+  <a href="#prison">जेल भागेका</a>
+  <a href="#discord">Discord</a>
+  <a href="#bts">BTS डेटा</a>
+  <a href="#tob">TOB समूह</a>
   <a href="#testimonies">बयानहरू</a>
   <a href="#awards">पुरस्कार</a>
   <a href="#reforms">सुधार सुझाव</a>
@@ -1034,7 +1170,7 @@ footer strong { color: rgba(255,255,255,.6); }
 <!-- ══════════ 06 TESTIMONIES PREVIEW ══════════ -->
 <section class="section section-alt" id="testimonies">
   <div class="sec-header">
-    <span class="sec-num">06</span>
+    <span class="sec-num" style="font-size:3rem">06</span>
     <div>
       <h2 class="sec-title ne">बयानहरू र अन्तर्वार्ताहरू</h2>
       <p class="sec-title-en">Testimonies &amp; Interrogations — परिच्छेद ५</p>
@@ -1107,10 +1243,296 @@ footer strong { color: rgba(255,255,255,.6); }
   </a>
 </section>
 
-<!-- ══════════ 07 AWARDS ══════════ -->
-<section class="section section-dark" id="awards">
+
+<!-- ══════════ 06 GOVT DECISIONS — ZERO ══════════ -->
+<section class="section section-alt" id="gov-decisions">
+  <div class="sec-header">
+    <span class="sec-num">06</span>
+    <div>
+      <h2 class="sec-title ne">सरकारी निर्णय — आयोगको खोज</h2>
+      <p class="sec-title-en">Government Decision-Making — परिच्छेद ९ र १२.८–१२.१०</p>
+    </div>
+  </div>
+
+  <p class="ne" style="font-size:.95rem;color:var(--muted);margin-bottom:24px;max-width:640px;line-height:1.75">
+    भाद्र २३ गते दिउँसो गोली चल्दा र मानिस मर्दा — माथिल्लो तहमा के निर्णय भयो? आयोगले सरकारका सबै बैठक र निर्णयका अभिलेख जाँच्यो।
+  </p>
+
+  <div class="gov-decision-grid">
+    <div class="gov-cell empty">
+      <div class="gov-cell-icon">🚫</div>
+      <div class="gov-cell-label">मन्त्रिपरिषद् — भाद्र २३</div>
+      <div class="gov-cell-body ne"><strong>कुनै औपचारिक निर्णय भएन।</strong> भाद्र २३ गतेको घटना सम्बन्धमा र भाद्र २४ गतेको सुरक्षा व्यवस्थाबारे मन्त्रिपरिषद्बाट कुनै पनि निर्णय भएको देखिएन।</div>
+    </div>
+    <div class="gov-cell empty">
+      <div class="gov-cell-icon">🚫</div>
+      <div class="gov-cell-label">केन्द्रीय सुरक्षा समिति</div>
+      <div class="gov-cell-body ne"><strong>आकस्मिक बैठक बसेन।</strong> भाद्र २३ गते आन्दोलनकारीहरूको मृत्यु भइसकेपछि पनि केन्द्रीय सुरक्षा समितिको आकस्मिक बैठक बसी कुनै निर्णय भएको पाइएन।</div>
+    </div>
+    <div class="gov-cell empty">
+      <div class="gov-cell-icon">⏰</div>
+      <div class="gov-cell-label">राष्ट्रिय सुरक्षा परिषद्</div>
+      <div class="gov-cell-body ne">दिउँसो १ बजेदेखि गोली चलिरहँदा — <strong>राति १०:०० बजे मात्र</strong> बैठक बस्यो। बैठकमा सेना परिचालन वा गोली रोक्नेबारे निर्णय भएको देखिएन।</div>
+    </div>
+    <div class="gov-cell done">
+      <div class="gov-cell-icon">✓</div>
+      <div class="gov-cell-label">राति बसेको बैठकमा भएको</div>
+      <div class="gov-cell-body ne">जाँचबुझ आयोग गठन गर्ने, मृतक-घाइतेलाई राहत दिने र सामाजिक सञ्जाल प्रतिबन्ध हटाउने निर्णय। <em style="color:var(--green)">— ४+ घण्टा ढिलो</em></div>
+    </div>
+  </div>
+
+  <div style="padding:16px 20px;background:rgba(192,57,43,.06);border-left:3px solid var(--red);margin-top:8px">
+    <p class="ne" style="font-size:.9rem;color:var(--red-dark);line-height:1.75">
+      <strong>आयोगको निष्कर्ष:</strong> कार्यकारी प्रमुखले तत्काल बैठक बोलाउने, सेना परिचालन गर्ने वा गोली रोक्न लगाउन सक्ने सांविधानिक अधिकार प्रयोग गरेनन् — यो "लापरबाही" र "हेलचेक्र्याई" हो।
+    </p>
+  </div>
+
+  <div style="margin-top:24px">
+    <p class="caps muted" style="margin-bottom:10px">भाद्र २२ रातिको सुरक्षा परिषद् बैठकमा के भयो?</p>
+    <div class="finding-row">
+      <div class="finding-icon">📊</div>
+      <div class="finding-text ne">राष्ट्रिय अनुसन्धान विभागले अनुमान: <strong>३,०००–५,०००</strong> व्यक्ति आउनेछन्, शान्तिपूर्ण हुनेछ</div>
+    </div>
+    <div class="finding-row crit">
+      <div class="finding-icon">⚠</div>
+      <div class="finding-text ne">Discord मा Molotov cocktail, Napalm को चर्चा भइरहेको थियो — <strong>राष्ट्रिय अनुसन्धान विभागलाई यसको जानकारी थिएन</strong></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">📋</div>
+      <div class="finding-text ne">IGP खापुङले "Heavy deployment नगर्ने, सुरक्षाकर्मी धेरै नदेखिने तर नजिक राख्ने" आदेश दिए</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 PHYSICAL EVIDENCE ══════════ -->
+<section class="section section-dark" id="evidence">
   <div class="sec-header">
     <span class="sec-num">07</span>
+    <div>
+      <h2 class="sec-title ne">भौतिक प्रमाण — Ballistic र Autopsy</h2>
+      <p class="sec-title-en">Physical Evidence — परिच्छेद १०, १२.७</p>
+    </div>
+  </div>
+
+  <div class="finding-grid" style="margin-bottom:28px">
+    <div class="finding-cell"><span class="finding-n">१,३६९</span><span class="finding-l">CCTV footage clips</span></div>
+    <div class="finding-cell"><span class="finding-n">१,७३६</span><span class="finding-l">सामाजिक सञ्जाल भिडियो</span></div>
+    <div class="finding-cell"><span class="finding-n">३,५३१</span><span class="finding-l">Screenshots</span></div>
+    <div class="finding-cell"><span class="finding-n">४६+</span><span class="finding-l">स्रोत निकायहरू</span></div>
+  </div>
+
+  <p class="caps" style="color:rgba(255,255,255,.35);margin-bottom:14px">Autopsy / Ballistic रिपोर्ट — मुख्य निष्कर्ष</p>
+
+  <div class="finding-row crit">
+    <div class="finding-icon">🔬</div>
+    <div class="finding-text ne">६३ शवको Autopsy प्रतिवेदन आयोगमा प्राप्त — <strong>४८ जनाको गोलीबाट मृत्यु पुष्टि</strong></div>
+  </div>
+  <div class="finding-row crit">
+    <div class="finding-icon">🎯</div>
+    <div class="finding-text ne">प्रयोग भएका गोलीहरू <strong>नेपाली सुरक्षा निकायले प्रयोग गर्ने हतियारसँग मेल खान्छन्</strong></div>
+  </div>
+  <div class="finding-row am">
+    <div class="finding-icon">🔫</div>
+    <div class="finding-text ne">Ballistic: <strong>5.56mm Caliber Rifle — ७</strong>, 7.62mm SLR — १, Rubber Pellets — १, Metal fragments — ५</div>
+  </div>
+
+  <p class="caps" style="color:rgba(255,255,255,.35);margin:20px 0 10px">गोली लागेको स्थान — ४८ जनामध्ये</p>
+  <div class="wound-grid">
+    <div class="wound-cell"><span class="wound-n">२०</span><span class="wound-l">छाती</span></div>
+    <div class="wound-cell"><span class="wound-n">१४</span><span class="wound-l">टाउको</span></div>
+    <div class="wound-cell"><span class="wound-n">५</span><span class="wound-l">घाँटी</span></div>
+    <div class="wound-cell"><span class="wound-n">४</span><span class="wound-l">पेट</span></div>
+    <div class="wound-cell"><span class="wound-n">१</span><span class="wound-l">नितम्ब</span></div>
+    <div class="wound-cell"><span class="wound-n">३</span><span class="wound-l">अन्य अङ्ग</span></div>
+  </div>
+
+  <div style="padding:14px 18px;border:1px solid var(--border-dk);margin-top:16px">
+    <p class="ne" style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7">
+      Berkeley Protocol सीमितता: आयोगले प्राप्त सामग्रीहरू पहिलेनै circulate, copy वा download गरिएका थिए।
+      Metadata हराइसकेकोले forensic-level chain-of-custody पुनर्निर्माण सम्भव भएन।
+      आयोगले geolocation, chronolocation र cross-corroboration विधि प्रयोग गर्‍यो।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 08 PRISON ESCAPES ══════════ -->
+<section class="section section-alt" id="prison">
+  <div class="sec-header">
+    <span class="sec-num">08</span>
+    <div>
+      <h2 class="sec-title ne">जेल र हिरासतबाट फरार</h2>
+      <p class="sec-title-en">Prison Escapes — परिच्छेद १२.१२</p>
+    </div>
+  </div>
+
+  <div class="big-nums" style="background:transparent;margin-bottom:28px">
+    <div style="padding:22px 20px;background:var(--paper2);text-align:center">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--red);line-height:1;display:block">१४,५५५</span>
+      <span style="font-family:'Tiro Devanagari Nepali',serif;font-size:.8rem;color:var(--muted);margin-top:4px;display:block">कारागार र हिरासतबाट फरार</span>
+    </div>
+    <div style="padding:22px 20px;background:var(--paper2);text-align:center">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--amber);line-height:1;display:block">४,४४२</span>
+      <span style="font-family:'Tiro Devanagari Nepali',serif;font-size:.8rem;color:var(--muted);margin-top:4px;display:block">हालसम्म फरार नै (प्रतिवेदन मिति)</span>
+    </div>
+    <div style="padding:22px 20px;background:var(--paper2);text-align:center">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--slate);line-height:1;display:block">९,७४७</span>
+      <span style="font-family:'Tiro Devanagari Nepali',serif;font-size:.8rem;color:var(--muted);margin-top:4px;display:block">पिताउ वा स्वयं उपस्थित</span>
+    </div>
+  </div>
+
+  <p class="caps muted" style="margin-bottom:12px">फरार कैदीहरूको मुद्दाका प्रकार (हालसम्म फरार रहेका)</p>
+  <div class="prison-bars" id="prisonBars">
+    <div class="prison-bar-item"><div class="prison-bar-label ne">बलात्कार मुद्दा</div><div class="prison-bar-track"><div class="prison-bar-fill" data-w="100"></div></div><div class="prison-bar-num">१,१७४</div></div>
+    <div class="prison-bar-item"><div class="prison-bar-label ne">लागुऔषध मुद्दा</div><div class="prison-bar-track"><div class="prison-bar-fill" data-w="88"></div></div><div class="prison-bar-num">१,०३७</div></div>
+    <div class="prison-bar-item"><div class="prison-bar-label ne">कर्तव्यज्यान (हत्या)</div><div class="prison-bar-track"><div class="prison-bar-fill" data-w="46"></div></div><div class="prison-bar-num">५४९</div></div>
+    <div class="prison-bar-item"><div class="prison-bar-label ne">डाँका-चोरी</div><div class="prison-bar-track"><div class="prison-bar-fill" data-w="38"></div></div><div class="prison-bar-num">४४८</div></div>
+    <div class="prison-bar-item"><div class="prison-bar-label ne">हतियार मुद्दा</div><div class="prison-bar-track"><div class="prison-bar-fill" data-w="3"></div></div><div class="prison-bar-num">३६</div></div>
+  </div>
+
+  <div style="padding:14px 18px;background:rgba(192,57,43,.05);border-left:3px solid var(--border);margin-top:8px">
+    <p class="ne" style="font-size:.87rem;color:var(--muted);line-height:1.7">
+      फरार कैदीबन्दीहरूबाट आपराधिक कार्य/गतिविधिमा संलग्न भएको समाचारहरू आइरहेका छन् — आफ्नै आमा, साथी, आफन्तको हत्या गरेको कसूरमा पुनः पिताउ समेत परेको नेपाल प्रहरीको सूचनामा उल्लेख छ।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 09 DISCORD ANALYSIS ══════════ -->
+<section class="section section-dark" id="discord">
+  <div class="sec-header">
+    <span class="sec-num">09</span>
+    <div>
+      <h2 class="sec-title ne">Discord विश्लेषण</h2>
+      <p class="sec-title-en">Digital Platform Analysis — परिच्छेद १२.१३</p>
+    </div>
+  </div>
+
+  <div class="finding-grid" style="margin-bottom:28px">
+    <div class="finding-cell"><span class="finding-n am">६,६४,०००+</span><span class="finding-l">सन्देशहरू (५० घण्टामा)</span></div>
+    <div class="finding-cell"><span class="finding-n am">३५६</span><span class="finding-l">Molotov cocktail को चर्चा</span></div>
+    <div class="finding-cell"><span class="finding-n wh">२</span><span class="finding-l">मुख्य Server</span></div>
+    <div class="finding-cell"><span class="finding-n am">१ जना</span><span class="finding-l">झूटो सन्देशले कलेज जलायो</span></div>
+  </div>
+
+  <p class="caps" style="color:rgba(255,255,255,.35);margin-bottom:14px">मुख्य घटनाक्रम — Discord मा</p>
+  <div class="discord-timeline">
+    <div class="dt-item am">
+      <div class="dt-time">भाद्र २२ — साँझ</div>
+      <div class="dt-text ne">Yuwa Hub र Youth Against Corruption Server सक्रिय। स्कुल युनिफर्ममा माइतीघर जाने योजना। <strong>जेन-जेड आयोजकहरूले नै Discord मा हिंसाको सन्देश देखेर Cyber Bureau लाई सूचना दिए — राज्यले ध्यान दिएन।</strong></div>
+    </div>
+    <div class="dt-item red">
+      <div class="dt-time">भाद्र २३ — दिउँसो</div>
+      <div class="dt-text ne">बानेश्वरमा प्रहरी र प्रदर्शनकारी बीच झडप। कफ्यु जारी भएपछि Discord मा सन्देश बदलियो:</div>
+      <div class="dt-quote">"Now we need to use Molotov" — Stardustkis (12:43 PM)<br>"Supply Molotov" — Rukesh (2:37 PM)<br>"Target Parliament Building with Molotov" — Kushel</div>
+    </div>
+    <div class="dt-item red">
+      <div class="dt-time">भाद्र २३ — राति</div>
+      <div class="dt-text ne"><strong>"टोनी"</strong> नामक user ले "होस्टलमा बलात्कार भइरहेको छ" भनी झूटो सन्देश पठायो। मोडेरेटरहरूले खण्डन गरे — तर भाद्र २४ मा <strong>Global College जलाइयो।</strong></div>
+    </div>
+    <div class="dt-item red">
+      <div class="dt-time">भाद्र २३ — राति ११:४९</div>
+      <div class="dt-text ne">Grenades भारतबाट import गर्ने छलफल — <strong>"India/Kerala को dealer चिनेको छु, ५० granades ल्याउन सकिन्छ"</strong></div>
+    </div>
+    <div class="dt-item am">
+      <div class="dt-time">Discord को सकारात्मक भूमिका</div>
+      <div class="dt-text ne">सुशीला काकीलाई प्रधानमन्त्रीमा सिफारिस गर्ने voting Discord मा नै भयो। Diwakar Dulal ले <strong>८७ पटक</strong> "Data centre नजलाउनुस्" भनी अनुरोध गरे।</div>
+    </div>
+  </div>
+
+  <div style="padding:14px 18px;border:1px solid var(--border-dk);margin-top:16px">
+    <p class="ne" style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7">
+      <strong style="color:var(--amber-lt)">आयोगको निष्कर्ष:</strong> Discord ले आन्दोलनको तयारी र सञ्चालनमा मुख्य भूमिका खेल्यो।
+      तर हिंसाका सन्देशहरू मुख्यतः घुसपैठिया समूहबाट आएका थिए — जेन-जेड आयोजकहरूले स्वयं यसबारे सुरक्षा निकायलाई सूचित गरेका थिए।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 10 BTS DATA ══════════ -->
+<section class="section section-alt" id="bts">
+  <div class="sec-header">
+    <span class="sec-num">10</span>
+    <div>
+      <h2 class="sec-title ne">BTS मोबाइल टावर डेटा</h2>
+      <p class="sec-title-en">Base Transceiver Station Analysis — परिच्छेद १२</p>
+    </div>
+  </div>
+
+  <p class="ne" style="font-size:.95rem;color:var(--muted);margin-bottom:22px;max-width:600px;line-height:1.75">
+    आयोगले NTC र Ncell बाट BTS (Base Transceiver Station) डेटा प्राप्त गर्‍यो।
+    भाद्र २४ गते तोडफोड र आगजनी भएका घटनास्थलहरू नजिकका मोबाइल टावरबाट कति व्यक्ति
+    सम्पर्कमा थिए भन्ने तथ्याङ्क — यसले त्यस दिन वास्तवमा कति मानिस उपस्थित थिए भन्ने
+    स्वतन्त्र प्रमाण प्रदान गर्छ।
+  </p>
+
+  <div class="bts-visual">
+    <div class="bts-block">
+      <span class="bts-n">१५,०३२</span>
+      <span class="bts-l ne">काठमाडौँ उपत्यका</span>
+      <span class="bts-sub">NTC + Ncell — भाद्र २४ घटनास्थलहरू</span>
+    </div>
+    <div class="bts-block">
+      <span class="bts-n">६८,३१७</span>
+      <span class="bts-l ne">उपत्यका बाहिर (NTC)</span>
+      <span class="bts-sub">११ जिल्ला — मुख्य सरकारी कार्यालयहरू नजिक</span>
+    </div>
+    <div class="bts-block">
+      <span class="bts-n">३९,२१२</span>
+      <span class="bts-l ne">उपत्यका बाहिर (Ncell)</span>
+      <span class="bts-sub">११ जिल्ला — मुख्य घटनास्थलहरू नजिक</span>
+    </div>
+  </div>
+
+  <div style="padding:14px 18px;background:var(--paper2);border-left:3px solid var(--border);margin-top:8px">
+    <p class="ne" style="font-size:.87rem;color:var(--muted);line-height:1.7">
+      ⚠ यो डेटा पूर्ण होइन — केही मुख्य स्थानहरूका डेटा मात्र सङ्ग्रहित गरिएका छन्।
+      आयोगले थप विस्तृत अनुसन्धानका लागि सेवाप्रदायकहरूसँग अतिरिक्त तथ्याङ्क बुझ्न सिफारिस गरेको छ।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 11 TOB GROUP ══════════ -->
+<section class="section" id="tob">
+  <div class="sec-header">
+    <span class="sec-num">11</span>
+    <div>
+      <h2 class="sec-title ne">TOB समूह र अभियोजन</h2>
+      <p class="sec-title-en">TOB Group — परिच्छेद १३</p>
+    </div>
+  </div>
+
+  <p class="ne" style="font-size:.95rem;color:var(--muted);margin-bottom:24px;max-width:640px;line-height:1.75">
+    भाद्र २३ र २४ को घटनामा "TOB" लेखेका ज्याकेट लगाएका व्यक्तिहरू बुलेट मोटरसाइकलमा आएको CCTV र प्रत्यक्षदर्शीहरूको बयानमा उल्लेख छ।
+  </p>
+
+  <div class="tob-card">
+    <div class="tob-title ne">TOB भनेको के हो?</div>
+    <div class="tob-body ne">
+      <strong>Tibetan Original Blood (TOB)</strong> — अध्यक्ष तेन्जिन दावा लामाले बनाएको मोटरसाइकल क्लब "The Original Brother"।
+      कुनै दर्ता संस्था होइन, राजनीतिक manifesto छैन भनी अध्यक्षको बयान।
+      तर आयोगले घटनामा TOB को भूमिका फेला पार्‍यो।
+    </div>
+  </div>
+
+  <div class="tob-card" style="margin-top:4px">
+    <div class="tob-title ne">आयोगको निष्कर्ष र सिफारिस</div>
+    <div class="tob-body ne">
+      TOB समूहका सदस्यहरूले भाद्र २४ को घटनामा <strong>मुलुकी अपराध संहिताको दफा ३५ अनुसार फौजदारी अभियोजन</strong> गर्न सरकारलाई सिफारिस।
+      TOB ले खेको भूमिका अनुसन्धान तहकिकातको विषय हो।
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:14px 18px;background:var(--paper2);border-left:3px solid var(--border)">
+    <p class="ne" style="font-size:.87rem;color:var(--muted);line-height:1.7">
+      अध्यक्ष तेन्जिन दावा लामाको बयान: "भाद्र २३ मा करिब आधा घण्टा मात्र सहभागी भई घर फर्किएँ।
+      हिंसामा सहभागी भइनँ। कुनै विदेशी राजनीतिक movement सँग सम्बन्ध छैन।"
+      — आयोगले यो बयान स्वीकार गरेन, थप अनुसन्धान आवश्यक ठहर गर्‍यो।
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 12 AWARDS ══════════ -->
+<section class="section section-dark" id="awards">
+  <div class="sec-header">
+    <span class="sec-num">12</span>
     <div>
       <h2 class="sec-title ne">पुरस्कार सिफारिस</h2>
       <p class="sec-title-en">Recommendations for Recognition</p>
@@ -1141,10 +1563,10 @@ footer strong { color: rgba(255,255,255,.6); }
   </div>
 </section>
 
-<!-- ══════════ 08 REFORMS ══════════ -->
+<!-- ══════════ 13 REFORMS ══════════ -->
 <section class="section" id="reforms">
   <div class="sec-header">
-    <span class="sec-num">08</span>
+    <span class="sec-num">13</span>
     <div>
       <h2 class="sec-title ne">शासकीय सुधारका सुझाव</h2>
       <p class="sec-title-en">Recommendations for Governance Reform — परिच्छेद १४</p>
@@ -1195,10 +1617,10 @@ footer strong { color: rgba(255,255,255,.6); }
   </div>
 </section>
 
-<!-- ══════════ 09 COMMISSION ══════════ -->
+<!-- ══════════ 14 COMMISSION ══════════ -->
 <section class="section section-dark" id="commission">
   <div class="sec-header">
-    <span class="sec-num">09</span>
+    <span class="sec-num">14</span>
     <div>
       <h2 class="sec-title ne">आयोगको बारेमा</h2>
       <p class="sec-title-en">About the Commission</p>
@@ -1267,6 +1689,19 @@ document.querySelectorAll('.tl-item, .accused-card').forEach((el,i) => {
   el.style.transitionDelay = (i % 6) * .08 + 's';
   io.observe(el);
 });
+
+/* ── prison bars ── */
+const prisonObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.prison-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+    }
+  });
+}, { threshold: .25 });
+const prisonSection = document.getElementById('prison');
+if (prisonSection) prisonObs.observe(prisonSection);
 
 /* ── damage bars ── */
 const dmgObs = new IntersectionObserver(entries => {
